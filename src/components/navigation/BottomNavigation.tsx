@@ -7,12 +7,12 @@ import {
   FontAwesome,
   AntDesign,
 } from '@expo/vector-icons';
-import Cart from '../../screens/Cart';
-import UnderDevelopment from '../../screens/UnderDevelopment';
-import Favorite from '../../screens/Favorite';
-import News from '../../screens/News';
 import TopNavigation from './TopNavigation';
 import Toast from 'react-native-toast-message';
+import {CartScreen} from '../../screens/CartScreen';
+import {FavoriteScreen} from '../../screens/FavoriteScreen';
+import {UnderDevelopmentScreen} from '../../screens/UnderDevelopmentScreen';
+import {NewsScreen} from '../../screens/NewsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +33,7 @@ const BottomNavigation = () => {
             ),
           }}
           name="Новинки"
-          component={News}
+          component={NewsScreen}
         />
 
         <Tab.Screen
@@ -43,7 +43,7 @@ const BottomNavigation = () => {
             ),
           }}
           name="Увійти"
-          component={UnderDevelopment}
+          component={UnderDevelopmentScreen}
         />
 
         <Tab.Screen
@@ -63,7 +63,7 @@ const BottomNavigation = () => {
             ),
           }}
           name="Улюблене"
-          component={Favorite}
+          component={FavoriteScreen}
         />
 
         <Tab.Screen
@@ -77,7 +77,7 @@ const BottomNavigation = () => {
             ),
           }}
           name="Кошик"
-          component={Cart}
+          component={CartScreen}
         />
       </Tab.Navigator>
       <Toast />

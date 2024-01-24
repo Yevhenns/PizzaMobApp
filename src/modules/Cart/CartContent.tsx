@@ -3,6 +3,7 @@ import {View} from 'react-native';
 import Empty from '../../components/Empty/Empty';
 import CartForm from './CartForm/CartForm';
 import CartList from './CartList/CartList';
+import {styles} from './CartContent.styles';
 
 interface Props {
   filledCart: TCart;
@@ -25,10 +26,7 @@ const CartContent = ({
   });
 
   return (
-    <View
-      style={{
-        padding: 10,
-      }}>
+    <View style={styles.wrapper}>
       {filledCart.length > 0 ? (
         <>
           <CartList

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {useAppDispatch, useAppSelector} from '../redux/hooks';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {
   deleteAllItems,
   deleteItem,
@@ -8,12 +8,12 @@ import {
   getFilledCart,
   getIsLoading,
   getOrderSum,
-} from '../redux/cart/cartSlice';
-import PagesWrapper from '../components/PagesWrapper/PagesWrapper';
-import CartContent from '../modules/Cart/CartContent';
-import FinalModal from '../components/FinalModal/FinalModal';
+} from '../../redux/cart/cartSlice';
+import PagesWrapper from '../../components/PagesWrapper/PagesWrapper';
+import CartContent from '../../modules/Cart/CartContent';
+import FinalModal from '../../components/FinalModal/FinalModal';
 
-const Cart = () => {
+export function CartScreen() {
   const [open, setOpen] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -57,6 +57,4 @@ const Cart = () => {
       </View>
     </PagesWrapper>
   );
-};
-
-export default Cart;
+}

@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const UnderDevelopment = () => {
+export function UnderDevelopmentScreen() {
   return (
     <View style={styles.wrapper}>
       <Text>Сторінка в розробці</Text>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -16,5 +16,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-export default UnderDevelopment;

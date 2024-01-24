@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import {BASE_URL} from '@env';
 
-const BASE_URL = process.env.EXPO_PUBLIC_BASE_URL;
+const baseUrl = BASE_URL;
 
 export const getProducts = createAsyncThunk<
   TProductsArr,
@@ -11,7 +12,7 @@ export const getProducts = createAsyncThunk<
   }
 >('products/getProductsAll', async (_, {rejectWithValue}) => {
   try {
-    const res = await axios.get(`${BASE_URL}products`);
+    const res = await axios.get(`${baseUrl}products`);
     return res.data.data.result;
   } catch (error: any) {
     return rejectWithValue(error.message);

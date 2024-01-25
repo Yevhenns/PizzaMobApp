@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
-import {Entypo} from '@expo/vector-icons';
 import {productQuantityCSS} from './ProductQuantity.styles';
+import {ChevronLeft} from '../../../../components/icons/ChevronLeft';
+import {ChevronRight} from '../../../../components/icons/ChevronRight';
 
 type ProductQuantityProps = {
   getTotalQuantity: (quantity: number) => void;
@@ -28,11 +29,11 @@ const ProductQuantity = ({getTotalQuantity}: ProductQuantityProps) => {
         onPress={decrement}
         disabled={quantity === 1}
         aria-label="minus">
-        <Entypo name="chevron-thin-left" size={24} color="#de612b" />
+        <ChevronLeft />
       </RoundButton>
       <Text style={productQuantityCSS.quantityText}>{quantity} шт.</Text>
       <RoundButton onPress={increment} aria-label="plus">
-        <Entypo name="chevron-thin-right" size={24} color="#de612b" />
+        <ChevronRight />
       </RoundButton>
     </View>
   );

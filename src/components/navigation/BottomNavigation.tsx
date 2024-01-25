@@ -1,18 +1,14 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  Entypo,
-  MaterialCommunityIcons,
-  Ionicons,
-  FontAwesome,
-  AntDesign,
-} from '@expo/vector-icons';
 import TopNavigation from './TopNavigation';
 import Toast from 'react-native-toast-message';
 import {CartScreen} from '../../screens/CartScreen';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
 import {UnderDevelopmentScreen} from '../../screens/UnderDevelopmentScreen';
 import {NewsScreen} from '../../screens/NewsScreen';
+import {Home} from '../icons/Home';
+import {Basket} from '../icons/Basket';
+import {Heart} from '../icons/Heart';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +25,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}) => (
-              <Entypo name="news" size={32} color={color} />
+              <Home name="news" size={32} color={color} />
             ),
           }}
           name="Новинки"
@@ -39,7 +35,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}) => (
-              <FontAwesome name="user-o" size={32} color={color} />
+              <Heart name="user-o" size={32} color={color} />
             ),
           }}
           name="Увійти"
@@ -49,7 +45,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}) => (
-              <Ionicons name="pizza-outline" size={32} color={color} />
+              <Heart name="pizza-outline" size={32} color={color} />
             ),
           }}
           name="Категорії"
@@ -59,7 +55,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}) => (
-              <AntDesign name="hearto" size={32} color={color} />
+              <Heart name="hearto" size={32} color={color} />
             ),
           }}
           name="Улюблене"
@@ -69,11 +65,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons
-                name="basket-outline"
-                size={32}
-                color={color}
-              />
+              <Basket name="basket-outline" size={32} color={color} />
             ),
           }}
           name="Кошик"

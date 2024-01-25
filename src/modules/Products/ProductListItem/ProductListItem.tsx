@@ -8,10 +8,10 @@ import {
 import ProductFooter from './ProductFooter/ProductFooter';
 import ProductDescription from './ProductDescription/ProductDescription';
 import RoundButton from '../../../UI/RoundButton/RoundButton';
-import {AntDesign} from '@expo/vector-icons';
 import {useAppDispatch} from '../../../redux/hooks';
 import Toast from 'react-native-toast-message';
 import {ProductListItemCSS} from './ProductListItem.styles';
+import {Home} from '../../../components/icons/Home';
 
 type ProductListItemProps = {
   item: TProduct;
@@ -80,9 +80,9 @@ const ProductListItem = ({
       <View style={ProductListItemCSS.favorite}>
         <RoundButton aria-label="add to favorite" onPress={addToFavorite}>
           {isFavorite ? (
-            <AntDesign name="heart" size={40} color="#de612b" />
+            <Home name="heart" size={40} color="#de612b" />
           ) : (
-            <AntDesign name="hearto" size={40} color="black" />
+            <Home name="hearto" size={40} color="black" />
           )}
         </RoundButton>
       </View>

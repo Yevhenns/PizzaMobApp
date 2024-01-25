@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import {Text, View, Image} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
-import {FontAwesome} from '@expo/vector-icons';
 import {styles} from './CartListItem.styles';
+import {Remove} from '../../../../components/icons/Remove';
 interface Props {
   data: TCartItem;
   deleteCartItem: (_id: string) => void;
@@ -25,7 +25,7 @@ const CartListItem: FC<Props> = ({data, deleteCartItem}) => {
       <RoundButton
         style={styles.deleteButton}
         onPress={() => deleteCartItem(_id)}>
-        <FontAwesome name="remove" size={24} color="#de612b" />
+        <Remove />
       </RoundButton>
     </View>
   );

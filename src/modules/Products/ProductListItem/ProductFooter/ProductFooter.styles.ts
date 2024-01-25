@@ -34,4 +34,9 @@ export const ProductFooterCSS = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  inBasketContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    alignItems: 'center',
+  },
 });

@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
-const Logo = () => {
+export const Logo = () => {
   return (
-    <View style={styles.wrapper}>
+    <View>
       <Svg fill="none" width="274" height="93" viewBox="0 0 274 93">
         <Path
           d="m59.672 29.667 13.565 9.316c.694.477 1.4.964 1.924 1.624.587.738.91 1.644 1.235 2.528a97.287 97.287 0 0 0 5.338 11.931c.659 1.242 1.35 2.482 1.746 3.83-2.484 1.16-5.759.2-7.225-2.116"
@@ -118,13 +118,3 @@ const Logo = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    // flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
-  },
-});
-
-export default Logo;

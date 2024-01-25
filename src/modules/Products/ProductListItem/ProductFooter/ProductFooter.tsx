@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Button from '../../../../UI/Button/Button';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {ProductFooterCSS} from './ProductFooter.styles';
+import {Basket} from '../../../../components/icons/Basket';
 
 type ProductFooterProps = {
   addToCart: TAddToCart;
@@ -36,17 +36,8 @@ const ProductFooter = ({
           addToCart(_id, totalQuantity, promotion, totalPrice, totalPromPrice)
         }>
         {isInCartBoolean ? (
-          <View
-            style={{
-              flexDirection: 'row',
-              gap: 10,
-              alignItems: 'center',
-            }}>
-            <MaterialCommunityIcons
-              name="basket-outline"
-              size={24}
-              color="white"
-            />
+          <View style={ProductFooterCSS.inBasketContainer}>
+            <Basket />
             <Text style={ProductFooterCSS.buttonText}>В кошику</Text>
           </View>
         ) : (

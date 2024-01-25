@@ -10,7 +10,7 @@ const Empty: FC<Props> = ({text}) => {
   return (
     <View style={emptyCSS.emptyCart}>
       <Image
-        source={require('../../../assets/empty.png')}
+        source={require('../../assets/empty.png')}
         alt="empty"
         width={236}
         height={257}

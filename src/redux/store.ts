@@ -1,32 +1,30 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
-// import storage from "redux-persist/lib/storage";
-import {persistStore, persistReducer, PERSIST} from 'redux-persist';
-import {cartReducer} from './cart/cartSlice';
-import {productsReducer} from './products/productsSlice';
-// import AsyncStorage from "@react-native-community/async-storage";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import { persistStore, persistReducer, PERSIST } from 'redux-persist';
+import { cartReducer } from './cart/cartSlice';
+import { productsReducer } from './products/productsSlice';
 
 const rootPersistConfig = {
   key: 'root',
-  storage: AsyncStorage,
-  blacklist: ['cart', 'products'],
+  storage,
+  blacklist: ['basket', 'allProducts'],
 };
 
 const cartPersistConfig = {
-  key: 'cart',
-  storage: AsyncStorage,
-  whitelist: ['filledCart'],
+  key: 'filteredBasket',
+  storage,
+  whitelist: ['filteredBasket'],
 };
 
 const favoritePersistConfig = {
-  key: 'products',
-  storage: AsyncStorage,
-  whitelist: ['favorites'],
+  key: 'favoriteProducts',
+  storage,
+  whitelist: ['favoriteProducts'],
 };
 
 const rootReducer = combineReducers({
-  cart: persistReducer(cartPersistConfig, cartReducer),
-  products: persistReducer(favoritePersistConfig, productsReducer),
+  basket: persistReducer(cartPersistConfig, cartReducer),
+  allProducts: persistReducer(favoritePersistConfig, productsReducer),
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);

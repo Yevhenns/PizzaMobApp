@@ -1,20 +1,20 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import ProductListItem from './ProductListItem/ProductListItem';
-import {addItem, getFilledCart} from '../../redux/cart/cartSlice';
-import {getFavorites} from '../../redux/products/productsSlice';
-import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import { addItem, getFilteredCart } from '../../redux/cart/cartSlice';
+import { getFavorites } from '../../redux/products/productsSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Toast from 'react-native-toast-message';
-import {ProductsListCSS} from './ProductsList.styles';
+import { ProductsListCSS } from './ProductsList.styles';
 
 type ProductsListProps = {
   data: TProductsArr;
 };
 
-const ProductsList = ({data}: ProductsListProps) => {
+const ProductsList = ({ data }: ProductsListProps) => {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
-  const filledCart = useAppSelector(getFilledCart);
+  const filledCart = useAppSelector(getFilteredCart);
 
   const isInCart = (_id: string) => filledCart.some(item => item._id === _id);
 
@@ -27,7 +27,7 @@ const ProductsList = ({data}: ProductsListProps) => {
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {
-      const {photo, title, _id} = chosenProduct;
+      const { photo, title, _id } = chosenProduct;
       const cartItem = {
         _id: _id,
         photo: photo,

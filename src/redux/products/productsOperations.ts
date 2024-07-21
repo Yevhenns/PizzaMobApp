@@ -2,18 +2,18 @@ import axios from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {BASE_URL} from '@env';
 
-const baseUrl = BASE_URL;
-
+console.log(BASE_URL)
 export const getProducts = createAsyncThunk<
-  TProductsArr,
+  Product[],
   void,
   {
     rejectValue: string;
   }
->('products/getProductsAll', async (_, {rejectWithValue}) => {
+>('allProducts/getProductsAll', async (_, { rejectWithValue }) => {
   try {
-    const res = await axios.get(`${baseUrl}products`);
-    return res.data.data.result;
+    const res = await fetch(`${BASE_URL}/api/products`);
+    const data: ProductsResponse = await res.json();
+    return data.data;
   } catch (error: any) {
     return rejectWithValue(error.message);
   }

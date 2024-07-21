@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text } from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
-import {productQuantityCSS} from './ProductQuantity.styles';
-import {ChevronLeft} from '../../../../components/icons/ChevronLeft';
-import {ChevronRight} from '../../../../components/icons/ChevronRight';
+import { productQuantityCSS } from './ProductQuantity.styles';
+import { ChevronLeft } from '../../../../components/icons/ChevronLeft';
+import { ChevronRight } from '../../../../components/icons/ChevronRight';
 
 type ProductQuantityProps = {
   getTotalQuantity: (quantity: number) => void;
 };
 
-const ProductQuantity = ({getTotalQuantity}: ProductQuantityProps) => {
+const ProductQuantity = ({ getTotalQuantity }: ProductQuantityProps) => {
   const [quantity, setQuantity] = useState(1);
 
   const increment = () => {

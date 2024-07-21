@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const ProductListItemCSS = StyleSheet.create({
   listItem: {
+    flex: 1,
     backgroundColor: '#fff',
     color: 'black',
     padding: 24,

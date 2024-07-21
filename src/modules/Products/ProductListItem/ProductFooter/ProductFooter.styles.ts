@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const ProductFooterCSS = StyleSheet.create({
   productFooter: {
+
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

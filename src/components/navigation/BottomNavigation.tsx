@@ -9,6 +9,7 @@ import {NewsScreen} from '../../screens/NewsScreen';
 import {Home} from '../icons/Home';
 import {Basket} from '../icons/Basket';
 import {Heart} from '../icons/Heart';
+import {Menu} from '../icons/Menu';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,16 +17,19 @@ const BottomNavigation = () => {
   return (
     <>
       <Tab.Navigator
+
         screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: {backgroundColor: '#de612b'},
-          tabBarActiveTintColor: 'white',
-          tabBarInactiveTintColor: 'black',
+          activeTintColor: 'tomato',
+          tabBarActiveTintColor: '#de612b',
+          tabBarInactiveTintColor: '#de612b',
+          color: 'red'
         }}>
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}) => (
-              <Home name="news" size={32} color={color} />
+            tabBarIcon: ({color, size}) => (
+              <Home name="news" size={size} color={color} />
             ),
           }}
           name="Новинки"
@@ -34,18 +38,8 @@ const BottomNavigation = () => {
 
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}) => (
-              <Heart name="user-o" size={32} color={color} />
-            ),
-          }}
-          name="Увійти"
-          component={UnderDevelopmentScreen}
-        />
-
-        <Tab.Screen
-          options={{
-            tabBarIcon: ({color}) => (
-              <Heart name="pizza-outline" size={32} color={color} />
+            tabBarIcon: ({color, size}) => (
+              <Menu name="pizza-outline" size={size} color={color} />
             ),
           }}
           name="Категорії"
@@ -55,7 +49,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({color}) => (
-              <Heart name="hearto" size={32} color={color} />
+              <Heart name="heart" size={32} color={color} />
             ),
           }}
           name="Улюблене"

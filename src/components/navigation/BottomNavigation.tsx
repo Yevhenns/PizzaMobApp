@@ -17,19 +17,16 @@ const BottomNavigation = () => {
   return (
     <>
       <Tab.Navigator
-
         screenOptions={{
           tabBarShowLabel: false,
           tabBarStyle: {backgroundColor: '#de612b'},
-          activeTintColor: 'tomato',
-          tabBarActiveTintColor: '#de612b',
-          tabBarInactiveTintColor: '#de612b',
-          color: 'red'
+          tabBarActiveTintColor: 'white',
+          tabBarInactiveTintColor: 'black',
         }}>
         <Tab.Screen
           options={{
             tabBarIcon: ({color, size}) => (
-              <Home name="news" size={size} color={color} />
+              <Home name="home" color={color} size={size} />
             ),
           }}
           name="Новинки"

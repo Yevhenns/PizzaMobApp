@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import {BASE_URL} from '@env';
 
 export const sendOrder = createAsyncThunk<
@@ -16,3 +16,4 @@ export const sendOrder = createAsyncThunk<
     return rejectWithValue(error.message as string);
   }
 });
+

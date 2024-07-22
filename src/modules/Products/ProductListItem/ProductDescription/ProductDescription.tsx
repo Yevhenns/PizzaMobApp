@@ -3,26 +3,48 @@ import {View, Text, Image} from 'react-native';
 import {ProductDescriptionCSS} from './ProductDescription.styles';
 
 interface ProductDescriptionProps {
+  _id: string;
   photo: string;
   title: string;
   description: string;
   dimension: string;
+  promotion: boolean;
+  isFavorite: boolean;
+  addToFavorite: () => void;
 }
 
-const ProductDescription = ({
+export function ProductDescription({
   photo,
   title,
   description,
   dimension,
-}: ProductDescriptionProps) => {
+  promotion,
+  isFavorite,
+  addToFavorite,
+}: ProductDescriptionProps) {
   return (
     <View style={ProductDescriptionCSS.descriprionWrapper}>
-      <Image
-        style={ProductDescriptionCSS.img}
-        source={{uri: photo}}
-        width={200}
-        height={200}
-      />
+      <View><Image style={ProductDescriptionCSS.img}
+                    source={{uri: photo}}
+                    width={200}
+                    height={200}
+                  />
+                  {promotion && <div className={css.promotion}>Акція</div>}
+                          <div className={css.favorite}>
+                            <RoundButton aria-label="add to favorite" onClick={addToFavorite}>
+                              {isFavorite ? (
+                                <Icon
+                                  svg="heart-filled"
+                                  iconWidth={34}
+                                  iconHeight={34}
+                                  color="accent"
+                                />
+                              ) : (
+                                <Icon svg="heart" iconWidth={34} iconHeight={34} />
+                              )}
+                            </RoundButton>
+                          </div>
+                  </View>
       <View style={ProductDescriptionCSS.info}>
         <Text style={ProductDescriptionCSS.title}>{title}</Text>
         <Text style={ProductDescriptionCSS.text}>{description}</Text>

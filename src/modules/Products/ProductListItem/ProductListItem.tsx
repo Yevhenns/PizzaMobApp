@@ -13,21 +13,21 @@ import Toast from 'react-native-toast-message';
 import { ProductListItemCSS } from './ProductListItem.styles';
 import { Heart } from '../../../components/icons/Heart';
 
-type ProductListItemProps = {
-  item: TProduct;
-  addToCart: TAddToCart;
+interface ProductListItemProps {
+  item: Product;
+  addToCart: AddToCart;
   setFavoriteProducts: (_id: string) => boolean;
-  favoriteProducts: TProductsArr;
-  isInCart: (_id: string) => boolean;
-};
+  favoriteProducts: Product[];
+  options?: Option[];
+}
 
-const ProductListItem = ({
+export function ProductListItem({
   item,
   addToCart,
   setFavoriteProducts,
   favoriteProducts,
-  isInCart,
-}: ProductListItemProps) => {
+  options = [],
+}: ProductListItemProps) {
   const {
     _id,
     title,
@@ -37,71 +37,109 @@ const ProductListItem = ({
     photo,
     promotion,
     promPrice,
+    category,
+    vegan,
   } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
+  const [optionsShown, setOptionsShown] = useState(false);
+  const [isOptionChosen, setIsOptionChosen] = useState(false);
+  const [optionsArray, setOptionsArray] = useState<Option[]>([]);
+  const [optionsSum, setOptionsSum] = useState(0);
 
   const dispatch = useAppDispatch();
 
   const getTotalQuantity = (quantity: number) => {
     setTotalQuantity(quantity);
-    setTotalPrice(price * quantity);
-    setTotalPromPrice(promPrice * quantity);
+    setTotalPrice((price + optionsSum) * quantity);
+    setTotalPromPrice((promPrice + optionsSum) * quantity);
   };
 
   const addToFavorite = () => {
     if (favoriteProducts.some(item => item._id === _id)) {
       setIsFavorite(false);
       dispatch(removeFromFavoriteAction(_id));
-      Toast.show({
-        type: 'info',
-        text1: 'Видалено з улюблених',
+      toast.warn('Видалено з улюблених', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
       });
     } else {
       setIsFavorite(true);
       dispatch(addToFavoriteAction(item));
-      Toast.show({
-        type: 'success',
-        text1: 'Додано в улюблені',
+      toast.success('Додано в улюблені', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
       });
     }
   };
 
+  const handleShowOptions = (e: ChangeEvent<HTMLInputElement>) => {
+    const isChecked = e.target.checked;
+    setOptionsShown(isChecked);
+  };
+
+  const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsOptionChosen(!isOptionChosen);
+    const checked = e.target.checked;
+
+    const optionData = options.find(item => item.title === e.target.value);
+
+    if (optionData !== undefined) {
+      if (checked && !optionsArray.includes(optionData)) {
+        setOptionsArray([...optionsArray, optionData]);
+        setOptionsSum(optionsSum + optionData.price);
+      }
+      if (!checked && optionsArray.includes(optionData)) {
+        const filteredArray = optionsArray.filter(item => item !== optionData);
+        setOptionsArray(filteredArray);
+        setOptionsSum(optionsSum - optionData.price);
+      }
+    }
+  };
+
+  useEffect(() => {
+    !optionsShown && setOptionsArray([]), setOptionsSum(0);
+  }, [optionsShown]);
+
   return (
     <View style={ProductListItemCSS.listItem}>
-      {promotion && (
-        <View style={ProductListItemCSS.promotion}>
-          <Text style={{ color: '#fff' }}>Акція</Text>
-        </View>
-      )}
-      <View style={ProductListItemCSS.favorite}>
-        <RoundButton aria-label="add to favorite" onPress={addToFavorite}>
-          {isFavorite ? (
-            <Heart name="heart" size={40} color="#de612b" />
-          ) : (
-            <Heart name="hearto" size={40} color="black" />
-          )}
-        </RoundButton>
-      </View>
       <ProductDescription
-        photo={photo}
-        title={title}
-        description={description}
-        dimension={dimension}
-      />
-      <ProductQuantity getTotalQuantity={getTotalQuantity} />
-      <ProductFooter
-        _id={_id}
-        totalQuantity={totalQuantity}
-        promotion={promotion}
-        totalPrice={totalPrice}
-        totalPromPrice={totalPromPrice}
-        addToCart={addToCart}
-        isInCart={isInCart}
-      />
+              _id={_id}
+              photo={photo}
+              title={title}
+              description={description}
+              dimension={dimension}
+              promotion={promotion}
+              isFavorite={isFavorite}
+              addToFavorite={addToFavorite}
+            />
+            <ProductQuantity
+              getTotalQuantity={getTotalQuantity}
+              handleChange={handleShowOptions}
+              options={options}
+              category={category}
+            />
+            {optionsShown && (
+              <ProductOptionsList
+                options={options}
+                handleChange={handleChooseOptions}
+                vegan={vegan}
+              />
+            )}
+            <ProductFooter
+              _id={_id}
+              totalQuantity={totalQuantity}
+              promotion={promotion}
+              totalPrice={totalPrice}
+              totalPromPrice={totalPromPrice}
+              addToCart={addToCart}
+              optionsArray={optionsArray}
+            />
     </View>
   );
 };

@@ -4,21 +4,21 @@ import Button from '../../../../UI/Button/Button';
 import {ProductFooterCSS} from './ProductFooter.styles';
 import {Basket} from '../../../../components/icons/Basket';
 
-type ProductFooterProps = {
-  addToCart: TAddToCart;
-  isInCart: (_id: string) => boolean;
-} & TProductItem;
+interface ProductFooterProps extends ProductItem {
+  addToCart: AddToCart;
+  optionsArray: Option[];
+}
 
-const ProductFooter = ({
+export function ProductFooter({
   _id,
   totalQuantity,
   promotion,
   totalPrice,
   totalPromPrice,
   addToCart,
-  isInCart,
-}: ProductFooterProps) => {
-  const isInCartBoolean = isInCart(_id);
+  optionsArray,
+}: ProductFooterProps) {
+  const optionsTitles = optionsArray.map(item => item.title);
 
   return (
     <View style={ProductFooterCSS.productFooter}>
@@ -31,20 +31,11 @@ const ProductFooter = ({
         <Text style={ProductFooterCSS.price}>{totalPrice} грн</Text>
       )}
       <Button
-        disabled={isInCartBoolean}
         onPress={() =>
-          addToCart(_id, totalQuantity, promotion, totalPrice, totalPromPrice)
-        }>
-        {isInCartBoolean ? (
-          <View style={ProductFooterCSS.inBasketContainer}>
-            <Basket />
-            <Text style={ProductFooterCSS.buttonText}>В кошику</Text>
-          </View>
-        ) : (
+          addToCart(_id, totalQuantity, promotion, totalPrice, totalPromPrice, optionsTitles)}>
           <View>
             <Text style={ProductFooterCSS.buttonText}>В кошик</Text>
           </View>
-        )}
       </Button>
     </View>
   );

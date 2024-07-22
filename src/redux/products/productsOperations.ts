@@ -2,7 +2,6 @@ import axios from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {BASE_URL} from '@env';
 
-console.log(BASE_URL)
 export const getProducts = createAsyncThunk<
   Product[],
   void,

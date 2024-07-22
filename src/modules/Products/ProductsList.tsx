@@ -7,16 +7,14 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Toast from 'react-native-toast-message';
 import { ProductsListCSS } from './ProductsList.styles';
 
-type ProductsListProps = {
-  data: TProductsArr;
-};
+interface ProductsListProps {
+  data: Product[];
+  options?: Option[];
+}
 
-const ProductsList = ({ data }: ProductsListProps) => {
+export function ProductsList({ data, options }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
-  const filledCart = useAppSelector(getFilteredCart);
-
-  const isInCart = (_id: string) => filledCart.some(item => item._id === _id);
 
   const addToCart = (
     _id: string,
@@ -24,6 +22,7 @@ const ProductsList = ({ data }: ProductsListProps) => {
     promotion: boolean,
     totalPrice: number,
     TotalPromPrice: number,
+    chosenOptions: string[]
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {
@@ -33,6 +32,7 @@ const ProductsList = ({ data }: ProductsListProps) => {
         photo: photo,
         title: title,
         quantity: totalQuantity,
+        options: chosenOptions,
         totalPrice: totalPrice,
       };
       const cartPromItem = {
@@ -40,6 +40,7 @@ const ProductsList = ({ data }: ProductsListProps) => {
         photo: photo,
         title: title,
         quantity: totalQuantity,
+        options: chosenOptions,
         totalPrice: TotalPromPrice,
       };
       if (promotion) {
@@ -47,10 +48,19 @@ const ProductsList = ({ data }: ProductsListProps) => {
       } else {
         dispatch(addItem(cartItem));
       }
-      Toast.show({
-        type: 'success',
-        text1: 'Додано у кошик',
+      toast.success('Додано до кошика', {
+        position: 'top-center',
+        autoClose: 1500,
+        hideProgressBar: true,
       });
+    }
+  };
+
+  const setFavoriteProducts = (_id: string) => {
+    if (favoriteProducts.some(item => item._id === _id)) {
+      return true;
+    } else {
+      return false;
     }
   };
 
@@ -72,7 +82,7 @@ const ProductsList = ({ data }: ProductsListProps) => {
             addToCart={addToCart}
             setFavoriteProducts={setFavoriteProducts}
             favoriteProducts={favoriteProducts}
-            isInCart={isInCart}
+            options={options}
           />
         );
       })}

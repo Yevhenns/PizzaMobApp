@@ -1,6 +1,5 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { Checkbox } from '@/UI/basic/Checkbox';
-import css from './ProductOptionsList.module.scss';
+import {ChangeEvent, useEffect, useState} from 'react';
+import {Text, View} from 'react-native';
 
 type ProductOptionsListProps = {
   options: Option[];
@@ -26,21 +25,21 @@ export function ProductOptionsList({
   }, [options, vegan]);
 
   return (
-    <div className={css.wrapper}>
+    <View>
       {filteredByVegan.map(item => {
         return (
-          <div key={item.id} className={css.item}>
-            <Checkbox
+          <View key={item.id}>
+            {/* <Checkbox
               htmlFor="option"
               name="option"
               label={item.title}
               value={item.title}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-            />
-            <span>{item.price} грн</span>
-          </div>
+            /> */}
+            <Text>{item.price} грн</Text>
+          </View>
         );
       })}
-    </div>
+    </View>
   );
 }

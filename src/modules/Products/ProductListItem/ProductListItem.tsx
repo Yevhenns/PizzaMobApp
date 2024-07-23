@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import React, {ChangeEvent, useEffect, useState} from 'react';
+import {View} from 'react-native';
 import ProductQuantity from './ProductQuantity/ProductQuantity';
 import {
   addToFavoriteAction,
@@ -7,11 +7,10 @@ import {
 } from '../../../redux/products/productsSlice';
 import ProductFooter from './ProductFooter/ProductFooter';
 import ProductDescription from './ProductDescription/ProductDescription';
-import RoundButton from '../../../UI/RoundButton/RoundButton';
-import { useAppDispatch } from '../../../redux/hooks';
+import {useAppDispatch} from '../../../redux/hooks';
 import Toast from 'react-native-toast-message';
-import { ProductListItemCSS } from './ProductListItem.styles';
-import { Heart } from '../../../components/icons/Heart';
+import {ProductListItemCSS} from './ProductListItem.styles';
+import {ProductOptionsList} from './ProductOptionsList/ProductOptionsList';
 
 interface ProductListItemProps {
   item: Product;
@@ -62,18 +61,16 @@ export function ProductListItem({
     if (favoriteProducts.some(item => item._id === _id)) {
       setIsFavorite(false);
       dispatch(removeFromFavoriteAction(_id));
-      toast.warn('Видалено з улюблених', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
+      Toast.show({
+        type: 'info',
+        text1: 'Видалено з улюблених',
       });
     } else {
       setIsFavorite(true);
       dispatch(addToFavoriteAction(item));
-      toast.success('Додано в улюблені', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
+      Toast.show({
+        type: 'success',
+        text1: 'Додано в улюблені',
       });
     }
   };
@@ -109,39 +106,39 @@ export function ProductListItem({
   return (
     <View style={ProductListItemCSS.listItem}>
       <ProductDescription
-              _id={_id}
-              photo={photo}
-              title={title}
-              description={description}
-              dimension={dimension}
-              promotion={promotion}
-              isFavorite={isFavorite}
-              addToFavorite={addToFavorite}
-            />
-            <ProductQuantity
-              getTotalQuantity={getTotalQuantity}
-              handleChange={handleShowOptions}
-              options={options}
-              category={category}
-            />
-            {optionsShown && (
-              <ProductOptionsList
-                options={options}
-                handleChange={handleChooseOptions}
-                vegan={vegan}
-              />
-            )}
-            <ProductFooter
-              _id={_id}
-              totalQuantity={totalQuantity}
-              promotion={promotion}
-              totalPrice={totalPrice}
-              totalPromPrice={totalPromPrice}
-              addToCart={addToCart}
-              optionsArray={optionsArray}
-            />
+        _id={_id}
+        photo={photo}
+        title={title}
+        description={description}
+        dimension={dimension}
+        promotion={promotion}
+        isFavorite={isFavorite}
+        addToFavorite={addToFavorite}
+      />
+      <ProductQuantity
+        getTotalQuantity={getTotalQuantity}
+        handleChange={handleShowOptions}
+        options={options}
+        category={category}
+      />
+      {optionsShown && (
+        <ProductOptionsList
+          options={options}
+          handleChange={handleChooseOptions}
+          vegan={vegan}
+        />
+      )}
+      <ProductFooter
+        _id={_id}
+        totalQuantity={totalQuantity}
+        promotion={promotion}
+        totalPrice={totalPrice}
+        totalPromPrice={totalPromPrice}
+        addToCart={addToCart}
+        optionsArray={optionsArray}
+      />
     </View>
   );
-};
+}
 
 export default ProductListItem;

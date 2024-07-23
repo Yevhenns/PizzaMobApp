@@ -1,18 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import ProductListItem from './ProductListItem/ProductListItem';
-import { addItem, getFilteredCart } from '../../redux/cart/cartSlice';
-import { getFavorites } from '../../redux/products/productsSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import {addItem} from '../../redux/cart/cartSlice';
+import {getFavorites} from '../../redux/products/productsSlice';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import Toast from 'react-native-toast-message';
-import { ProductsListCSS } from './ProductsList.styles';
+import {ProductsListCSS} from './ProductsList.styles';
 
 interface ProductsListProps {
   data: Product[];
   options?: Option[];
 }
 
-export function ProductsList({ data, options }: ProductsListProps) {
+export function ProductsList({data, options}: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
 
@@ -22,11 +22,11 @@ export function ProductsList({ data, options }: ProductsListProps) {
     promotion: boolean,
     totalPrice: number,
     TotalPromPrice: number,
-    chosenOptions: string[]
+    chosenOptions: string[],
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {
-      const { photo, title, _id } = chosenProduct;
+      const {photo, title, _id} = chosenProduct;
       const cartItem = {
         _id: _id,
         photo: photo,
@@ -48,19 +48,10 @@ export function ProductsList({ data, options }: ProductsListProps) {
       } else {
         dispatch(addItem(cartItem));
       }
-      toast.success('Додано до кошика', {
-        position: 'top-center',
-        autoClose: 1500,
-        hideProgressBar: true,
+      Toast.show({
+        type: 'success',
+        text1: 'Додано у кошик',
       });
-    }
-  };
-
-  const setFavoriteProducts = (_id: string) => {
-    if (favoriteProducts.some(item => item._id === _id)) {
-      return true;
-    } else {
-      return false;
     }
   };
 
@@ -88,6 +79,6 @@ export function ProductsList({ data, options }: ProductsListProps) {
       })}
     </View>
   );
-};
+}
 
 export default ProductsList;

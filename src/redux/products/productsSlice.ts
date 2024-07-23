@@ -14,12 +14,12 @@ const productsSlice = createSlice({
   name: 'allProducts',
   initialState,
   reducers: {
-    addToFavoriteAction(state, action: { payload: Product }) {
+    addToFavoriteAction(state, action: {payload: Product}) {
       state.favoriteProducts = [...state.favoriteProducts, action.payload];
     },
-    removeFromFavoriteAction(state, action: { payload: string }) {
+    removeFromFavoriteAction(state, action: {payload: string}) {
       state.favoriteProducts = state.favoriteProducts.filter(
-        item => item._id !== action.payload
+        item => item._id !== action.payload,
       );
     },
   },
@@ -44,7 +44,7 @@ const productsSlice = createSlice({
           state.productsAll = action.payload;
           state.promotions = getByPromotion();
           const filteredFavoriteProducts = state.favoriteProducts.filter(
-            ({ _id: id1 }) => action.payload.some(({ _id: id2 }) => id1 === id2)
+            ({_id: id1}) => action.payload.some(({_id: id2}) => id1 === id2),
           );
           state.favoriteProducts = filteredFavoriteProducts;
           state.isLoading = false;
@@ -67,5 +67,5 @@ export const getFavorites = (state: RootState) =>
 export const getIsLoading = (state: RootState) => state.allProducts.isLoading;
 export const getError = (state: RootState) => state.allProducts.error;
 
-export const { addToFavoriteAction } = productsSlice.actions;
-export const { removeFromFavoriteAction } = productsSlice.actions;
+export const {addToFavoriteAction} = productsSlice.actions;
+export const {removeFromFavoriteAction} = productsSlice.actions;

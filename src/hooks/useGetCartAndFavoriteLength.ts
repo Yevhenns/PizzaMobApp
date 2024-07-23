@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { useAppSelector } from '@/redux/hooks';
-import { getFilteredCart } from '@/redux/cart/cartSlice';
-import { getFavorites } from '@/redux/products/productsSlice';
+import {useEffect, useState} from 'react';
+import {getFilteredCart} from '../redux/cart/cartSlice';
+import {getFavorites} from '../redux/products/productsSlice';
+import {useAppSelector} from '../redux/hooks';
 
 export const useGetCartAndFavoriteLength = () => {
   const [cartLength, setCartLength] = useState<null | number>(null);
@@ -18,5 +18,5 @@ export const useGetCartAndFavoriteLength = () => {
     setFavoriteLength(favorite);
   }, [favorite]);
 
-  return { cartLength, favoriteLength };
+  return {cartLength, favoriteLength};
 };

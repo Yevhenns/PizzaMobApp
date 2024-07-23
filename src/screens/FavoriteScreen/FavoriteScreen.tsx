@@ -7,6 +7,7 @@ import ProductsList from '../../modules/Products/ProductsList';
 import Empty from '../../components/Empty/Empty';
 import Loader from '../../UI/Loader/Loader';
 import {styles} from './FavoriteScreen.styles';
+import {options} from '../../options';
 
 export function FavoriteScreen() {
   const isLoading = useAppSelector(getIsLoading);
@@ -16,7 +17,7 @@ export function FavoriteScreen() {
     <PagesWrapper>
       {isLoading && <Loader />}
       {favoriteProducts.length > 0 ? (
-        <ProductsList data={favoriteProducts} />
+        <ProductsList data={favoriteProducts} options={options} />
       ) : (
         <View style={styles.emptyContainer}>
           <Empty text={'Тут нічого немає!'} />

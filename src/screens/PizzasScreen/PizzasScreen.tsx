@@ -5,6 +5,7 @@ import {getIsLoading, getProductsAll} from '../../redux/products/productsSlice';
 import {filterByCategory} from '../../helpers/filterByCategory';
 import {useAppSelector} from '../../redux/hooks';
 import Loader from '../../UI/Loader/Loader';
+import {options} from '../../options';
 
 export function PizzasScreen() {
   const products = useAppSelector(getProductsAll);
@@ -14,7 +15,7 @@ export function PizzasScreen() {
   return (
     <PagesWrapper>
       {isLoading && <Loader />}
-      <ProductsList data={pizzas} />
+      <ProductsList data={pizzas} options={options} />
     </PagesWrapper>
   );
 }

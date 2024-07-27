@@ -5,7 +5,7 @@ import CheckboxOption from '../../../../UI/Checkbox/CheckboxOption';
 
 type ProductOptionsListProps = {
   options: Option[];
-  handleChange: (value: string, chosen: boolean) => void;
+  handleChange: (title: string, isChecked: boolean) => void;
   vegan: boolean;
 };
 
@@ -31,11 +31,7 @@ export function ProductOptionsList({
       {filteredByVegan.map(item => {
         return (
           <View key={item.id} style={ProductOptionsListCSS.productItem}>
-            <CheckboxOption
-              label={item.title}
-              data={item.title}
-              handleChange={handleChange}
-            />
+            <CheckboxOption title={item.title} handleChange={handleChange} />
             <Text>+ {item.price} грн</Text>
           </View>
         );

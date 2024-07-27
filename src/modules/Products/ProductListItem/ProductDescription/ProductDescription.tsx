@@ -41,7 +41,7 @@ export function ProductDescription({
         )}
         <View style={ProductDescriptionCSS.favorite}>
           <RoundButton aria-label="add to favorite" onPress={addToFavorite}>
-            {isFavorite ? (
+            {!isFavorite ? (
               <Heart color={'#de612b'} />
             ) : (
               <HeartFilled color={'#de612b'} />

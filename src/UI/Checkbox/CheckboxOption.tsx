@@ -10,28 +10,26 @@ import {HeartFilled} from '../../components/icons/HeartFilled';
 import {Heart} from '../../components/icons/Heart';
 
 interface Props extends TouchableOpacityProps {
-  label: string;
-  handleChange: (value: string, isChecked: boolean) => void;
-  value: string;
+  title: string;
+  handleChange: (title: string, isChecked: boolean) => void;
 }
 
 const CheckboxOption: FC<PropsWithRef<Props>> = ({
-  label,
+  title,
   handleChange,
-  value,
   ...props
 }) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const showOptions = (value: string, isChecked: boolean) => {
-    handleChange(value, isChecked);
+  const showOptions = (title: string, isChecked: boolean) => {
     setIsChecked(!isChecked);
+    handleChange(title, !isChecked);
   };
 
   return (
     <TouchableOpacity
       style={CheckboxCSS.checkbox}
-      onPress={() => showOptions(value, isChecked)}>
+      onPress={() => showOptions(title, isChecked)}>
       <View>
         {isChecked ? (
           <HeartFilled color={'black'} />
@@ -39,7 +37,7 @@ const CheckboxOption: FC<PropsWithRef<Props>> = ({
           <Heart color={'black'} />
         )}
       </View>
-      <Text>{label}</Text>
+      <Text>{title}</Text>
     </TouchableOpacity>
   );
 };

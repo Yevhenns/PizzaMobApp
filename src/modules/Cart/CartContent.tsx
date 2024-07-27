@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-import Empty from '../../components/Empty/Empty';
+import {Empty} from '../../components/Empty/Empty';
 import CartForm from './CartForm/CartForm';
 import CartList from './CartList/CartList';
 import {styles} from './CartContent.styles';
@@ -40,7 +40,7 @@ const CartContent = ({deleteAllProducts, openModal}: CartContentProps) => {
   }
 
   if (filteredCart.length === 0 && !isLoading) {
-    return <Empty text={'Кошик порожній!'} />;
+    return <Empty />;
   }
 
   return (
@@ -54,7 +54,7 @@ const CartContent = ({deleteAllProducts, openModal}: CartContentProps) => {
           <CartForm openModal={openModal} order={order} />
         </>
       ) : (
-        <Empty text={'Кошик порожній!'} />
+        <Empty />
       )}
     </View>
   );

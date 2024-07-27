@@ -37,7 +37,7 @@ export function CartListItemQuantity({
   }, [cart_id, dispatch, price, pricePerItem, quantity]);
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <RoundButton
         onPress={decrement}
         disabled={quantity === 1}
@@ -51,3 +51,14 @@ export function CartListItemQuantity({
     </View>
   );
 }
+
+import {StyleSheet} from 'react-native';
+
+export const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
+    marginLeft: 'auto',
+  },
+});

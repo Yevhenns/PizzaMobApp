@@ -15,7 +15,7 @@ const CartListItem = ({data, deleteCartItem}: CartListItemProps) => {
 
   return (
     <View style={styles.wrapper}>
-      <View>
+      <View style={styles.mainContent}>
         <Image
           style={styles.image}
           source={{uri: photo}}

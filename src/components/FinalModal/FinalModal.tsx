@@ -1,10 +1,9 @@
 import React, {FC} from 'react';
 import Button from '../../UI/Button/Button';
 // import LoaderModal from "../../UI/common/LoaderModal/LoaderModal";
-import Error500 from '../errors/Error500/Error500';
+import Error500 from '../Error500/Error500';
 import {Text, View} from 'react-native';
 import Loader from '../../UI/Loader/Loader';
-import {FinalModalCSS} from './FinalModal.styles';
 import {useAppSelector} from '../../redux/hooks';
 import {
   getError,
@@ -28,12 +27,12 @@ const FinalModal: FC<FinalModalProps> = ({finalAction}) => {
   }
 
   return (
-    <View style={FinalModalCSS.modalWrapper}>
+    <View style={css.modalWrapper}>
       {isLoading ? (
         <Loader />
       ) : (
-        <View style={FinalModalCSS.modal}>
-          <View style={FinalModalCSS.resultText}>
+        <View style={css.modal}>
+          <View style={css.resultText}>
             <Text>Дякуємо!</Text>
             <Text>Ваше замовлення прийняте,</Text>
             <Text>очікуйте дзвінок від менеджера</Text>
@@ -54,7 +53,7 @@ const FinalModal: FC<FinalModalProps> = ({finalAction}) => {
             <Text>Загальна сума: {sum} грн.</Text>
           </View>
           <Button onPress={finalAction}>
-            <Text style={FinalModalCSS.buttonText}>Вийти</Text>
+            <Text style={css.buttonText}>Вийти</Text>
           </Button>
         </View>
       )}
@@ -63,3 +62,34 @@ const FinalModal: FC<FinalModalProps> = ({finalAction}) => {
 };
 
 export default FinalModal;
+
+import {StyleSheet} from 'react-native';
+
+export const css = StyleSheet.create({
+  modalWrapper: {
+    //   background: rgba($color: #3d3838, $alpha: 0.7),
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 50,
+    overflow: 'scroll',
+  },
+  modal: {
+    // backgroundColor: var(--white-color),
+    // color: var(--black-color),
+    // font-family: var(--secondary-font),
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+  },
+  resultText: {
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+  },
+});

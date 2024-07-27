@@ -1,23 +1,24 @@
-import React, {FC} from 'react';
 import {View, Text, Image} from 'react-native';
-import {emptyCSS} from './Empty.styles';
+import {StyleSheet} from 'react-native';
 
-interface Props {
-  text: string;
-}
-
-const Empty: FC<Props> = ({text}) => {
+export function Empty() {
   return (
-    <View style={emptyCSS.emptyCart}>
+    <View style={css.emptyCart}>
       <Image
         source={require('../../assets/empty.png')}
         alt="empty"
         width={236}
         height={257}
       />
-      <Text>{text}</Text>
+      <Text>Тут нічого немає!</Text>
     </View>
   );
-};
+}
 
-export default Empty;
+export const css = StyleSheet.create({
+  emptyCart: {
+    alignItems: 'center',
+    gap: 10,
+    padding: 20,
+  },
+});

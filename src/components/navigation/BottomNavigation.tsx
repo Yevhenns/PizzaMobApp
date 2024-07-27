@@ -1,15 +1,13 @@
-import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TopNavigation from './TopNavigation';
 import Toast from 'react-native-toast-message';
 import {CartScreen} from '../../screens/CartScreen';
 import {FavoriteScreen} from '../../screens/FavoriteScreen';
-import {UnderDevelopmentScreen} from '../../screens/UnderDevelopmentScreen';
-import {NewsScreen} from '../../screens/NewsScreen';
 import {Home} from '../icons/Home';
 import {Basket} from '../icons/Basket';
 import {Heart} from '../icons/Heart';
 import {Menu} from '../icons/Menu';
+import {NewsScreen} from '../../screens/NewsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,9 +23,7 @@ const BottomNavigation = () => {
         }}>
         <Tab.Screen
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Home name="home" color={color} size={size} />
-            ),
+            tabBarIcon: ({color}) => <Home color={color} />,
           }}
           name="Новинки"
           component={NewsScreen}
@@ -35,9 +31,7 @@ const BottomNavigation = () => {
 
         <Tab.Screen
           options={{
-            tabBarIcon: ({color, size}) => (
-              <Menu name="pizza-outline" size={size} color={color} />
-            ),
+            tabBarIcon: ({color}) => <Menu color={color} />,
           }}
           name="Категорії"
           component={TopNavigation}
@@ -45,9 +39,7 @@ const BottomNavigation = () => {
 
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}) => (
-              <Heart name="heart" size={32} color={color} />
-            ),
+            tabBarIcon: ({color}) => <Heart color={color} />,
           }}
           name="Улюблене"
           component={FavoriteScreen}
@@ -55,9 +47,7 @@ const BottomNavigation = () => {
 
         <Tab.Screen
           options={{
-            tabBarIcon: ({color}) => (
-              <Basket name="basket-outline" size={32} color={color} />
-            ),
+            tabBarIcon: ({color}) => <Basket color={color} />,
           }}
           name="Кошик"
           component={CartScreen}

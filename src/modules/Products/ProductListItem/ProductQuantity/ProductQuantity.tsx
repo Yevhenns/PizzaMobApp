@@ -1,4 +1,4 @@
-import React, {useState, useEffect, ChangeEvent} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {productQuantityCSS} from './ProductQuantity.styles';

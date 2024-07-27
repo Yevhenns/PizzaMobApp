@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import ProductQuantity from './ProductQuantity/ProductQuantity';
 import {
   addToFavoriteAction,
@@ -9,7 +9,7 @@ import ProductFooter from './ProductFooter/ProductFooter';
 import ProductDescription from './ProductDescription/ProductDescription';
 import {useAppDispatch} from '../../../redux/hooks';
 import Toast from 'react-native-toast-message';
-import {ProductListItemCSS} from './ProductListItem.styles';
+// import { ProductListItemCSS } from './ProductListItem.styles';
 import {ProductOptionsList} from './ProductOptionsList/ProductOptionsList';
 
 interface ProductListItemProps {
@@ -45,7 +45,6 @@ export function ProductListItem({
   const [totalQuantity, setTotalQuantity] = useState(1);
   const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
-  const [isOptionChosen, setIsOptionChosen] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
 
@@ -75,23 +74,19 @@ export function ProductListItem({
     }
   };
 
-  const handleShowOptions = (e: ChangeEvent<HTMLInputElement>) => {
-    const isChecked = e.target.checked;
-    setOptionsShown(isChecked);
+  const handleShowOptions = () => {
+    setOptionsShown(!optionsShown);
   };
 
-  const handleChooseOptions = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsOptionChosen(!isOptionChosen);
-    const checked = e.target.checked;
-
-    const optionData = options.find(item => item.title === e.target.value);
+  const handleChooseOptions = (value: string, isChecked: boolean) => {
+    const optionData = options.find(item => item.title === value);
 
     if (optionData !== undefined) {
-      if (checked && !optionsArray.includes(optionData)) {
+      if (isChecked && !optionsArray.includes(optionData)) {
         setOptionsArray([...optionsArray, optionData]);
         setOptionsSum(optionsSum + optionData.price);
       }
-      if (!checked && optionsArray.includes(optionData)) {
+      if (!isChecked && optionsArray.includes(optionData)) {
         const filteredArray = optionsArray.filter(item => item !== optionData);
         setOptionsArray(filteredArray);
         setOptionsSum(optionsSum - optionData.price);
@@ -142,3 +137,17 @@ export function ProductListItem({
 }
 
 export default ProductListItem;
+
+export const ProductListItemCSS = StyleSheet.create({
+  listItem: {
+    flex: 1,
+    backgroundColor: '#fff',
+    color: 'black',
+    padding: 24,
+    borderRadius: 10,
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+  },
+});

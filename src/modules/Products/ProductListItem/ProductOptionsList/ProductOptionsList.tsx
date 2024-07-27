@@ -1,9 +1,11 @@
-import {ChangeEvent, useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import Checkbox from '../../../../UI/Checkbox/Checkbox';
+import CheckboxOption from '../../../../UI/Checkbox/CheckboxOption';
 
 type ProductOptionsListProps = {
   options: Option[];
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (value: string, chosen: boolean) => void;
   vegan: boolean;
 };
 
@@ -28,18 +30,25 @@ export function ProductOptionsList({
     <View>
       {filteredByVegan.map(item => {
         return (
-          <View key={item.id}>
-            {/* <Checkbox
-              htmlFor="option"
-              name="option"
+          <View key={item.id} style={ProductOptionsListCSS.productItem}>
+            <CheckboxOption
               label={item.title}
-              value={item.title}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-            /> */}
-            <Text>{item.price} грн</Text>
+              data={item.title}
+              handleChange={handleChange}
+            />
+            <Text>+ {item.price} грн</Text>
           </View>
         );
       })}
     </View>
   );
 }
+
+export const ProductOptionsListCSS = StyleSheet.create({
+  productItem: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+});

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet,View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
 export const Remove = () => {

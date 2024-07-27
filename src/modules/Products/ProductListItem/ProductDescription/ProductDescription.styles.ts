@@ -21,4 +21,22 @@ export const ProductDescriptionCSS = StyleSheet.create({
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+  promotion: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    backgroundColor: '#de612b',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    //           font-family: var(--main-font);
+  },
+  promotionText: {
+    color: 'white',
+  },
+  favorite: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+  },
 });

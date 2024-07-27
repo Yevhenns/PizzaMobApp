@@ -11,30 +11,27 @@ import {Heart} from '../../components/icons/Heart';
 
 interface Props extends TouchableOpacityProps {
   label: string;
-  handleChange: () => void;
-  labelLeft?: boolean;
+  handleChange: (value: string, isChecked: boolean) => void;
+  value: string;
 }
 
-const Checkbox: FC<PropsWithRef<Props>> = ({
+const CheckboxOption: FC<PropsWithRef<Props>> = ({
   label,
   handleChange,
-  labelLeft = false,
+  value,
   ...props
 }) => {
   const [isChecked, setIsChecked] = useState(false);
 
-  const showOptions = () => {
-    handleChange();
+  const showOptions = (value: string, isChecked: boolean) => {
+    handleChange(value, isChecked);
     setIsChecked(!isChecked);
   };
 
   return (
     <TouchableOpacity
-      style={[
-        CheckboxCSS.checkbox,
-        labelLeft ? CheckboxCSS.left : CheckboxCSS.right,
-      ]}
-      onPress={showOptions}>
+      style={CheckboxCSS.checkbox}
+      onPress={() => showOptions(value, isChecked)}>
       <View>
         {isChecked ? (
           <HeartFilled color={'black'} />
@@ -47,20 +44,15 @@ const Checkbox: FC<PropsWithRef<Props>> = ({
   );
 };
 
-Checkbox.displayName = 'Checkbox';
+CheckboxOption.displayName = 'Checkbox';
 
-export default Checkbox;
+export default CheckboxOption;
 
 const CheckboxCSS = StyleSheet.create({
   checkbox: {
     display: 'flex',
     alignItems: 'center',
     gap: 16,
-  },
-  left: {
-    flexDirection: 'row-reverse',
-  },
-  right: {
     flexDirection: 'row',
   },
 });

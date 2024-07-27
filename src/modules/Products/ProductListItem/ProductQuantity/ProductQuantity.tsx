@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, ChangeEvent} from 'react';
 import {View, Text} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {productQuantityCSS} from './ProductQuantity.styles';
 import {ChevronLeft} from '../../../../components/icons/ChevronLeft';
 import {ChevronRight} from '../../../../components/icons/ChevronRight';
+import Checkbox from '../../../../UI/Checkbox/Checkbox';
 
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: () => void;
   options?: Option[] | [];
   category: string;
 }
@@ -34,28 +35,20 @@ export function ProductQuantity({
 
   return (
     <View style={productQuantityCSS.wrapper}>
-      <View>
+      <View style={productQuantityCSS.quantitySet}>
         <RoundButton
           onPress={decrement}
           disabled={quantity === 1}
           aria-label="minus">
-          <ChevronLeft />
+          <ChevronLeft color={'#de612b'} />
         </RoundButton>
         <Text>{quantity} шт.</Text>
         <RoundButton onPress={increment} aria-label="plus">
-          <ChevronRight />
+          <ChevronRight color={'#de612b'} />
         </RoundButton>
       </View>
       {category === 'pizzas' && options.length > 0 && (
-        <View>
-          {/* <Checkbox
-            htmlFor="options"
-            name="options"
-            label="Опції"
-            posRight
-            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
-          /> */}
-        </View>
+        <Checkbox label="Опції" handleChange={handleChange} labelLeft />
       )}
     </View>
   );

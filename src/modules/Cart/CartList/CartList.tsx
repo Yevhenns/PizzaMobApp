@@ -28,7 +28,7 @@ const CartList = ({deleteCartItem, deleteAllProducts}: CartListProps) => {
       {filteredCart.map(data => {
         return (
           <CartListItem
-            key={data._id}
+            key={data.cart_id}
             deleteCartItem={deleteCartItem}
             data={data}
           />

@@ -5,19 +5,19 @@ import {cartReducer} from './cart/cartSlice';
 import {productsReducer} from './products/productsSlice';
 
 const rootPersistConfig = {
-  key: 'root',
+  key: 'root_v1',
   storage: AsyncStorage,
   blacklist: ['basket', 'allProducts'],
 };
 
 const cartPersistConfig = {
-  key: 'filteredBasket',
+  key: 'cart_v1',
   storage: AsyncStorage,
   whitelist: ['filteredBasket'],
 };
 
 const favoritePersistConfig = {
-  key: 'favoriteProducts',
+  key: 'products_v1',
   storage: AsyncStorage,
   whitelist: ['favoriteProducts'],
 };

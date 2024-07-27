@@ -1,4 +1,3 @@
-import React, {FC} from 'react';
 import {Text, View, Image} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {styles} from './CartListItem.styles';
@@ -16,12 +15,7 @@ const CartListItem = ({data, deleteCartItem}: CartListItemProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.mainContent}>
-        <Image
-          style={styles.image}
-          source={{uri: photo}}
-          width={50}
-          height={50}
-        />
+        <Image source={{uri: photo}} width={50} height={50} />
         <Text>{title}</Text>
         <CartListItemQuantity
           chosenQuantity={quantity}

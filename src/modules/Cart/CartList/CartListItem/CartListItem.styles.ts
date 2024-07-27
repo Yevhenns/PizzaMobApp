@@ -2,12 +2,10 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   wrapper: {
-    // flexDirection: 'row',
-    // gap: 5,
-    // marginLeft: 'auto',
-    // marginRight: 'auto',
-    // alignItems: 'center',
-    // font-family: var(--secondary-font);
+    borderColor: 'red',
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 5,
   },
   mainContent: {
     width: '100%',

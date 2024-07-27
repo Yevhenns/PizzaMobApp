@@ -5,22 +5,24 @@ import Error500 from '../errors/Error500/Error500';
 import {Text, View} from 'react-native';
 import Loader from '../../UI/Loader/Loader';
 import {FinalModalCSS} from './FinalModal.styles';
+import {useAppSelector} from '../../redux/hooks';
+import {
+  getError,
+  getFilteredCart,
+  getIsLoading,
+  getOrderSum,
+} from '../../redux/cart/cartSlice';
 
-interface Props {
+interface FinalModalProps {
   finalAction: () => void;
-  filledCart: TCart;
-  sum: number;
-  isLoading: boolean;
-  err: any;
 }
 
-const FinalModal: FC<Props> = ({
-  finalAction,
-  filledCart,
-  sum,
-  isLoading,
-  err,
-}) => {
+const FinalModal: FC<FinalModalProps> = ({finalAction}) => {
+  const filteredCart = useAppSelector(getFilteredCart);
+  const sum = useAppSelector(getOrderSum);
+  const isLoading = useAppSelector(getIsLoading);
+  const err = useAppSelector(getError);
+
   if (err) {
     return <Error500 />;
   }
@@ -38,7 +40,7 @@ const FinalModal: FC<Props> = ({
             <Text>Інформація про замовлення:</Text>
           </View>
           <View>
-            {filledCart.map(({_id, title, quantity, totalPrice}) => {
+            {filteredCart.map(({_id, title, quantity, totalPrice}) => {
               return (
                 <View key={_id}>
                   <Text>

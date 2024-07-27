@@ -4,33 +4,50 @@ import Empty from '../../components/Empty/Empty';
 import CartForm from './CartForm/CartForm';
 import CartList from './CartList/CartList';
 import {styles} from './CartContent.styles';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import {
+  deleteItem,
+  getFilteredCart,
+  getIsLoading,
+} from '../../redux/cart/cartSlice';
+import Loader from '../../UI/Loader/Loader';
 
-interface Props {
-  filledCart: TCart;
-  deleteCartItem: (id: string) => void;
+interface CartContentProps {
   deleteAllProducts: () => void;
   openModal: () => void;
 }
 
-const CartContent = ({
-  filledCart,
-  deleteCartItem,
-  deleteAllProducts,
-  openModal,
-}: Props) => {
-  const order: TOrdered = filledCart.map(item => {
+const CartContent = ({deleteAllProducts, openModal}: CartContentProps) => {
+  const filteredCart = useAppSelector(getFilteredCart);
+  const isLoading = useAppSelector(getIsLoading);
+
+  const dispatch = useAppDispatch();
+
+  const order: Ordered = filteredCart.map(item => {
     return {
       title: item.title,
       quantity: item.quantity,
+      options: item.options,
     };
   });
 
+  const deleteCartItem = (cart_id: string) => {
+    dispatch(deleteItem(cart_id));
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (filteredCart.length === 0 && !isLoading) {
+    return <Empty text={'Кошик порожній!'} />;
+  }
+
   return (
     <View style={styles.wrapper}>
-      {filledCart.length > 0 ? (
+      {filteredCart.length > 0 ? (
         <>
           <CartList
-            filledCart={filledCart}
             deleteCartItem={deleteCartItem}
             deleteAllProducts={deleteAllProducts}
           />

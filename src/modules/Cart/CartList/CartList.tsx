@@ -2,19 +2,20 @@ import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import CartListItem from './CartListItem/CartListItem';
 import Button from '../../../UI/Button/Button';
-import {useAppDispatch} from '../../../redux/hooks';
-import {addOrderSum} from '../../../redux/cart/cartSlice';
+import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
+import {addOrderSum, getFilteredCart} from '../../../redux/cart/cartSlice';
 import {CartListCSS} from './CartList.styles';
 
-interface Props {
-  filledCart: TCart;
-  deleteCartItem: (_id: string) => void;
+interface CartListProps {
+  deleteCartItem: (cart_id: string) => void;
   deleteAllProducts: () => void;
 }
 
-const CartList = ({filledCart, deleteCartItem, deleteAllProducts}: Props) => {
+const CartList = ({deleteCartItem, deleteAllProducts}: CartListProps) => {
+  const filteredCart = useAppSelector(getFilteredCart);
+
   let sum = 0;
-  filledCart.forEach(item => (sum += item.totalPrice));
+  filteredCart.forEach(item => (sum += item.totalPrice));
 
   const dispatch = useAppDispatch();
 
@@ -24,7 +25,7 @@ const CartList = ({filledCart, deleteCartItem, deleteAllProducts}: Props) => {
 
   return (
     <View style={CartListCSS.cartList}>
-      {filledCart.map(data => {
+      {filteredCart.map(data => {
         return (
           <CartListItem
             key={data._id}

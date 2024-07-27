@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { sendOrder } from './cartOperations';
-import { RootState } from '../store';
-import { v4 as uuidv4 } from 'uuid';
+import {createSlice} from '@reduxjs/toolkit';
+import {sendOrder} from './cartOperations';
+import {RootState} from '../store';
+import uuid from 'react-native-uuid';
 
 const initialState = {
   filteredBasket: [] as CartItem[],
@@ -15,10 +15,10 @@ const cartSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addItem(state, action: { payload: AddtoCartItem }) {
+    addItem(state, action: {payload: AddtoCartItem}) {
       function areOptionsEqual(
         options1: string[],
-        options2: string[]
+        options2: string[],
       ): boolean {
         if (options1.length !== options2.length) {
           return false;
@@ -27,14 +27,14 @@ const cartSlice = createSlice({
         const sortedOptions2 = [...options2].sort();
 
         return sortedOptions1.every(
-          (opt, index) => opt === sortedOptions2[index]
+          (opt, index) => opt === sortedOptions2[index],
         );
       }
 
       const existingItemIndex = state.filteredBasket.findIndex(
         item =>
           item._id === action.payload._id &&
-          areOptionsEqual(item.options, action.payload.options)
+          areOptionsEqual(item.options, action.payload.options),
       );
 
       if (existingItemIndex !== -1) {
@@ -45,39 +45,39 @@ const cartSlice = createSlice({
       } else {
         const newCartItem = {
           ...action.payload,
-          cart_id: uuidv4(),
+          cart_id: uuid.v4() as string,
         };
         state.filteredBasket = [...state.filteredBasket, newCartItem];
       }
     },
-    deleteItem(state, action: { payload: string }) {
+    deleteItem(state, action: {payload: string}) {
       state.filteredBasket = state.filteredBasket.filter(
-        (item: CartItem) => item.cart_id !== action.payload
+        (item: CartItem) => item.cart_id !== action.payload,
       );
     },
-    checkCart(state, action: { payload: Product[] }) {
-      state.filteredBasket = state.filteredBasket.filter(({ _id: id1 }) =>
-        action.payload.some(({ _id: id2 }) => id1 === id2)
+    checkCart(state, action: {payload: Product[]}) {
+      state.filteredBasket = state.filteredBasket.filter(({_id: id1}) =>
+        action.payload.some(({_id: id2}) => id1 === id2),
       );
     },
-    addInfo(state, action: { payload: Info }) {
+    addInfo(state, action: {payload: Info}) {
       state.customerInfo = action.payload;
     },
     deleteAllItems(state) {
       state.filteredBasket = [];
       state.customerInfo = {} as Info;
     },
-    addOrderSum(state, action: { payload: number }) {
+    addOrderSum(state, action: {payload: number}) {
       state.orderSum = action.payload;
     },
     setQuantityAndPrice(
       state,
       action: {
-        payload: { cart_id: string; quantity: number; totalPrice: number };
-      }
+        payload: {cart_id: string; quantity: number; totalPrice: number};
+      },
     ) {
       const existingItemIndex = state.filteredBasket.findIndex(
-        item => item.cart_id === action.payload.cart_id
+        item => item.cart_id === action.payload.cart_id,
       );
       state.filteredBasket[existingItemIndex].quantity =
         action.payload.quantity;
@@ -117,10 +117,10 @@ export const getOrderSum = (state: RootState) => state.basket.orderSum;
 export const getIsLoading = (state: RootState) => state.basket.isLoading;
 export const getError = (state: RootState) => state.basket.error;
 
-export const { addItem } = cartSlice.actions;
-export const { deleteItem } = cartSlice.actions;
-export const { checkCart } = cartSlice.actions;
-export const { addInfo } = cartSlice.actions;
-export const { deleteAllItems } = cartSlice.actions;
-export const { addOrderSum } = cartSlice.actions;
-export const { setQuantityAndPrice } = cartSlice.actions;
+export const {addItem} = cartSlice.actions;
+export const {deleteItem} = cartSlice.actions;
+export const {checkCart} = cartSlice.actions;
+export const {addInfo} = cartSlice.actions;
+export const {deleteAllItems} = cartSlice.actions;
+export const {addOrderSum} = cartSlice.actions;
+export const {setQuantityAndPrice} = cartSlice.actions;

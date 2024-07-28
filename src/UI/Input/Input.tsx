@@ -1,4 +1,3 @@
-import React, {FC, PropsWithRef} from 'react';
 import {
   Text,
   View,
@@ -6,9 +5,9 @@ import {
   KeyboardTypeOptions,
   TextInputProps,
 } from 'react-native';
-import {inputCSS} from './Input.styles';
+import {StyleSheet} from 'react-native';
 
-interface Props extends TextInputProps {
+interface InputProps extends TextInputProps {
   label?: string;
   error?: string;
   keyboardType?: KeyboardTypeOptions;
@@ -17,31 +16,60 @@ interface Props extends TextInputProps {
   touched?: any;
 }
 
-const Input: FC<PropsWithRef<Props>> = ({
+export function Input({
   textArea = false,
   label,
   error,
   keyboardType = 'default',
   numberOfLines = 1,
   ...props
-}) => {
+}: InputProps) {
   return (
-    <View style={inputCSS.fieldset}>
+    <View style={styles.fieldset}>
       <Text>{label}</Text>
       <TextInput
         numberOfLines={numberOfLines}
         keyboardType={keyboardType}
-        style={[inputCSS.input, textArea && inputCSS.textArea]}
+        style={[styles.input, textArea && styles.textArea]}
         {...props}
       />
 
-      <View style={inputCSS.errorContainer}>
-        {error && <Text style={inputCSS.errorMessage}>{error}</Text>}
+      <View style={styles.errorContainer}>
+        {error && <Text style={styles.errorMessage}>{error}</Text>}
       </View>
     </View>
   );
-};
+}
 
 Input.displayName = 'Input';
 
-export default Input;
+const styles = StyleSheet.create({
+  fieldset: {
+    // font-family: var(--secondary-font);
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+  },
+  input: {
+    width: '100%',
+    padding: 12,
+    borderRadius: 5,
+    borderColor: '#de612b',
+    borderWidth: 1,
+    // transition: var(--transition);
+    // outline: none;
+    // font-family: var(--main-font);
+    // &:hover {
+    //     box-shadow: var(--box-shadow);
+    // }
+  },
+  textArea: {
+    textAlignVertical: 'top',
+  },
+  errorContainer: {
+    height: 20,
+  },
+  errorMessage: {
+    color: 'red',
+  },
+});

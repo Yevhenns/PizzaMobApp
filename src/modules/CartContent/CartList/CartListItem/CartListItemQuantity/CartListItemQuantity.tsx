@@ -22,30 +22,27 @@ export function CartListItemQuantity({
 
   const dispatch = useAppDispatch();
 
-  const increment = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const decrement = () => {
-    setQuantity(quantity - 1);
-  };
-
-  const pricePerItem = price / chosenQuantity;
+  const increment = () => setQuantity(prevQuantity => prevQuantity + 1);
+  const decrement = () => setQuantity(prevQuantity => prevQuantity - 1);
 
   useEffect(() => {
-    const totalPrice = quantity * pricePerItem;
+    setQuantity(chosenQuantity);
+  }, [chosenQuantity]);
+
+  useEffect(() => {
+    const totalPrice = quantity * (price / chosenQuantity);
     dispatch(setQuantityAndPrice({cart_id, quantity, totalPrice}));
-  }, [cart_id, dispatch, price, pricePerItem, quantity]);
+  }, [quantity]);
 
   return (
-    <View style={css.wrapper}>
+    <View style={styles.wrapper}>
       <RoundButton
         onPress={decrement}
         disabled={quantity === 1}
         aria-label="minus">
         <ChevronLeft color="#de612b" />
       </RoundButton>
-      <Text>{quantity}</Text>
+      <Text>{chosenQuantity}</Text>
       <RoundButton onPress={increment} aria-label="plus">
         <ChevronRight color="#de612b" />
       </RoundButton>
@@ -53,7 +50,7 @@ export function CartListItemQuantity({
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     gap: 5,

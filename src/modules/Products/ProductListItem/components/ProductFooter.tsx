@@ -20,14 +20,14 @@ export function ProductFooter({
   const optionsTitles = optionsArray.map(item => item.title);
 
   return (
-    <View style={css.productFooter}>
+    <View style={styles.productFooter}>
       {promotion ? (
-        <View style={css.priceWrapper}>
-          <Text style={css.oldPrice}>{totalPrice} грн</Text>
-          <Text style={css.promPrice}>{totalPromPrice} грн</Text>
+        <View style={styles.priceWrapper}>
+          <Text style={styles.oldPrice}>{totalPrice} грн</Text>
+          <Text style={styles.promPrice}>{totalPromPrice} грн</Text>
         </View>
       ) : (
-        <Text style={css.price}>{totalPrice} грн</Text>
+        <Text style={styles.price}>{totalPrice} грн</Text>
       )}
       <Button
         onPress={() =>
@@ -41,14 +41,14 @@ export function ProductFooter({
           )
         }>
         <View>
-          <Text style={css.buttonText}>В кошик</Text>
+          <Text style={styles.buttonText}>В кошик</Text>
         </View>
       </Button>
     </View>
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   productFooter: {
     display: 'flex',
     alignItems: 'center',

@@ -26,15 +26,20 @@ export function ProductDescription({
   addToFavorite,
 }: ProductDescriptionProps) {
   return (
-    <View style={css.descriprionWrapper}>
+    <View style={styles.descriprionWrapper}>
       <View>
-        <Image style={css.img} source={{uri: photo}} width={200} height={200} />
+        <Image
+          style={styles.img}
+          source={{uri: photo}}
+          width={200}
+          height={200}
+        />
         {promotion && (
-          <View style={css.promotion}>
-            <Text style={css.promotionText}>Акція</Text>
+          <View style={styles.promotion}>
+            <Text style={styles.promotionText}>Акція</Text>
           </View>
         )}
-        <View style={css.favorite}>
+        <View style={styles.favorite}>
           <RoundButton aria-label="add to favorite" onPress={addToFavorite}>
             {!isFavorite ? (
               <Heart color={'#de612b'} />
@@ -44,16 +49,16 @@ export function ProductDescription({
           </RoundButton>
         </View>
       </View>
-      <View style={css.info}>
-        <Text style={css.title}>{title}</Text>
-        <Text style={css.text}>{description}</Text>
-        <Text style={css.text}>{dimension}</Text>
+      <View style={styles.info}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.text}>{description}</Text>
+        <Text style={styles.text}>{dimension}</Text>
       </View>
     </View>
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   descriprionWrapper: {
     display: 'flex',
     flexDirection: 'column',

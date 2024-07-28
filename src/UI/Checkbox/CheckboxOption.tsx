@@ -26,10 +26,10 @@ export function CheckboxOption({
 
   return (
     <TouchableOpacity
-      style={css.checkbox}
+      style={styles.checkbox}
       onPress={() => showOptions(title, isChecked)}>
-      <View style={css.checkboxButton}>
-        {!isChecked ? <View /> : <View style={css.checkboxChecked} />}
+      <View style={styles.checkboxButton}>
+        {!isChecked ? <View /> : <View style={styles.checkboxChecked} />}
       </View>
       <Text>{title}</Text>
     </TouchableOpacity>
@@ -38,7 +38,7 @@ export function CheckboxOption({
 
 CheckboxOption.displayName = 'Checkbox';
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   checkbox: {
     display: 'flex',
     alignItems: 'center',

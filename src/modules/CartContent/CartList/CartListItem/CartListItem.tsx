@@ -13,8 +13,8 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
   const {cart_id, photo, title, quantity, totalPrice, options} = data;
 
   return (
-    <View style={css.wrapper}>
-      <View style={css.mainContent}>
+    <View style={styles.wrapper}>
+      <View style={styles.mainContent}>
         <Image source={{uri: photo}} width={50} height={50} />
         <Text>{title}</Text>
         <CartListItemQuantity
@@ -22,9 +22,9 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
           cart_id={cart_id}
           price={totalPrice}
         />
-        <Text style={css.totalPrice}>{totalPrice} грн</Text>
+        <Text style={styles.totalPrice}>{totalPrice} грн</Text>
         <RoundButton
-          style={css.deleteButton}
+          style={styles.deleteButton}
           onPress={() => deleteCartItem(cart_id)}>
           <Remove color={'#de612b'} />
         </RoundButton>
@@ -46,7 +46,7 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     borderColor: '#de612b',
     borderWidth: 2,

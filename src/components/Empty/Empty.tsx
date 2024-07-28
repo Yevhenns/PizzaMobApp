@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 
 export function Empty() {
   return (
-    <View style={css.emptyCart}>
+    <View style={styles.emptyCart}>
       <Image
         source={require('../../assets/empty.png')}
         alt="empty"
@@ -15,7 +15,7 @@ export function Empty() {
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   emptyCart: {
     alignItems: 'center',
     gap: 10,

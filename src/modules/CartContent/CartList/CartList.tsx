@@ -24,7 +24,7 @@ export function CartList({deleteCartItem, deleteAllProducts}: CartListProps) {
   }, [dispatch, sum]);
 
   return (
-    <View style={css.cartList}>
+    <View style={styles.cartList}>
       {filteredCart.map(data => {
         return (
           <CartListItem
@@ -34,15 +34,15 @@ export function CartList({deleteCartItem, deleteAllProducts}: CartListProps) {
           />
         );
       })}
-      <Text style={css.totalPayment}>До оплати {sum} грн</Text>
+      <Text style={styles.totalPayment}>До оплати {sum} грн</Text>
       <Button onPress={deleteAllProducts}>
-        <Text style={css.buttonText}>Очистити кошик</Text>
+        <Text style={styles.buttonText}>Очистити кошик</Text>
       </Button>
     </View>
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   cartList: {
     display: 'flex',
     gap: 5,

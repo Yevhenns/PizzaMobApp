@@ -23,10 +23,12 @@ const cartSlice = createSlice({
         if (options1.length !== options2.length) {
           return false;
         }
+        const sortedOptions1 = [...options1].sort();
+        const sortedOptions2 = [...options2].sort();
 
-        return options1
-          .sort()
-          .every((opt, index) => opt === options2.sort()[index]);
+        return sortedOptions1.every(
+          (opt, index) => opt === sortedOptions2[index],
+        );
       }
 
       const existingItemIndex = state.filteredBasket.findIndex(
@@ -36,7 +38,7 @@ const cartSlice = createSlice({
       );
 
       if (existingItemIndex !== -1) {
-        state.filteredBasket[existingItemIndex] = {
+        const updatedItem = {
           ...state.filteredBasket[existingItemIndex],
           quantity:
             state.filteredBasket[existingItemIndex].quantity +
@@ -45,6 +47,12 @@ const cartSlice = createSlice({
             state.filteredBasket[existingItemIndex].totalPrice +
             action.payload.totalPrice,
         };
+
+        state.filteredBasket = [
+          ...state.filteredBasket.slice(0, existingItemIndex),
+          updatedItem,
+          ...state.filteredBasket.slice(existingItemIndex + 1),
+        ];
       } else {
         const newCartItem = {
           ...action.payload,
@@ -120,10 +128,12 @@ export const getOrderSum = (state: RootState) => state.basket.orderSum;
 export const getIsLoading = (state: RootState) => state.basket.isLoading;
 export const getError = (state: RootState) => state.basket.error;
 
-export const {addItem} = cartSlice.actions;
-export const {deleteItem} = cartSlice.actions;
-export const {checkCart} = cartSlice.actions;
-export const {addInfo} = cartSlice.actions;
-export const {deleteAllItems} = cartSlice.actions;
-export const {addOrderSum} = cartSlice.actions;
-export const {setQuantityAndPrice} = cartSlice.actions;
+export const {
+  addItem,
+  addInfo,
+  addOrderSum,
+  checkCart,
+  deleteAllItems,
+  deleteItem,
+  setQuantityAndPrice,
+} = cartSlice.actions;

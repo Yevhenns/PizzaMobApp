@@ -27,12 +27,12 @@ export function FinalModal({finalAction}: FinalModalProps) {
   }
 
   return (
-    <View style={css.modalWrapper}>
+    <View style={styles.modalWrapper}>
       {isLoading ? (
         <Loader />
       ) : (
-        <View style={css.modal}>
-          <View style={css.resultText}>
+        <View style={styles.modal}>
+          <View style={styles.resultText}>
             <Text>Дякуємо!</Text>
             <Text>Ваше замовлення прийняте,</Text>
             <Text>очікуйте дзвінок від менеджера</Text>
@@ -53,7 +53,7 @@ export function FinalModal({finalAction}: FinalModalProps) {
             <Text>Загальна сума: {sum} грн.</Text>
           </View>
           <Button onPress={finalAction}>
-            <Text style={css.buttonText}>Вийти</Text>
+            <Text style={styles.buttonText}>Вийти</Text>
           </Button>
         </View>
       )}
@@ -61,7 +61,7 @@ export function FinalModal({finalAction}: FinalModalProps) {
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   modalWrapper: {
     //   background: rgba($color: #3d3838, $alpha: 0.7),
     display: 'flex',

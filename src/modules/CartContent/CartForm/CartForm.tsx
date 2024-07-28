@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {addInfo, getOrderSum} from '../../../redux/cart/cartSlice';
 import {sendOrder} from '../../../redux/cart/cartOperations';
 import {Button} from '../../../UI/Button/Button';
-import Input from '../../../UI/Input/Input';
+import {Input} from '../../../UI/Input/Input';
 // import Checkbox from "../../../UI/Checkbox/Checkbox";
 import {GestureResponderEvent, Text, View} from 'react-native';
 import {Formik} from 'formik';

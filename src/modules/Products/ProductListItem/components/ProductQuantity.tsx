@@ -34,8 +34,8 @@ export function ProductQuantity({
   }, [getTotalQuantity, quantity]);
 
   return (
-    <View style={css.wrapper}>
-      <View style={css.quantitySet}>
+    <View style={styles.wrapper}>
+      <View style={styles.quantitySet}>
         <RoundButton
           onPress={decrement}
           disabled={quantity === 1}
@@ -54,7 +54,7 @@ export function ProductQuantity({
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     display: 'flex',

@@ -35,10 +35,6 @@ export function CartContent({deleteAllProducts, openModal}: CartContentProps) {
     dispatch(deleteItem(cart_id));
   };
 
-  useEffect(() => {
-    console.log('Filtered Cart:', filteredCart);
-  }, [filteredCart]);
-
   if (isLoading) {
     return <Loader />;
   }

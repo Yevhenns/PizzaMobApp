@@ -50,7 +50,7 @@ export function ProductsList({data, options}: ProductsListProps) {
   };
 
   return (
-    <View style={css.wrapper}>
+    <View style={styles.wrapper}>
       {data.map(item => {
         return (
           <ProductListItem
@@ -67,7 +67,7 @@ export function ProductsList({data, options}: ProductsListProps) {
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     rowGap: 20,
     alignItems: 'stretch',

@@ -1,4 +1,3 @@
-import React from 'react';
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
 import {StyleSheet} from 'react-native';
 
@@ -16,7 +15,7 @@ export function Button({
   return (
     <TouchableOpacity
       disabled={disabled}
-      style={css.button}
+      style={styles.button}
       onPress={onPress}
       {...props}>
       {children}
@@ -24,7 +23,7 @@ export function Button({
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     paddingVertical: 12,
     paddingHorizontal: 24,

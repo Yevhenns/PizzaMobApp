@@ -100,7 +100,7 @@ export function ProductListItem({
   }, [optionsShown]);
 
   return (
-    <View style={ProductListItemCSS.listItem}>
+    <View style={styles.listItem}>
       <ProductDescription
         _id={_id}
         photo={photo}
@@ -137,7 +137,7 @@ export function ProductListItem({
   );
 }
 
-const ProductListItemCSS = StyleSheet.create({
+const styles = StyleSheet.create({
   listItem: {
     flex: 1,
     backgroundColor: '#fff',

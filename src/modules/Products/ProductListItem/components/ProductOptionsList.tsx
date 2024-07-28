@@ -25,10 +25,10 @@ export function ProductOptionsList({
   }, [options, vegan]);
 
   return (
-    <View style={css.wrapper}>
+    <View style={styles.wrapper}>
       {filteredByVegan.map(item => {
         return (
-          <View key={item.id} style={css.productItem}>
+          <View key={item.id} style={styles.productItem}>
             <CheckboxOption title={item.title} handleChange={handleChange} />
             <Text>+ {item.price} грн</Text>
           </View>
@@ -38,7 +38,7 @@ export function ProductOptionsList({
   );
 }
 
-const css = StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     gap: 6,

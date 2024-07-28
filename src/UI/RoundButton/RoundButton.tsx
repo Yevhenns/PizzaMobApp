@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {roundButtonCSS} from './RoundButton.styles';
+import {StyleSheet} from 'react-native';
 
 type ButtonProps = {
   onPress: () => void;
@@ -10,7 +10,7 @@ type ButtonProps = {
 const RoundButton = ({children, onPress, disabled, ...props}: ButtonProps) => {
   return (
     <TouchableOpacity
-      style={roundButtonCSS.button}
+      style={styles.button}
       onPress={onPress}
       {...props}
       disabled={disabled}>
@@ -20,3 +20,15 @@ const RoundButton = ({children, onPress, disabled, ...props}: ButtonProps) => {
 };
 
 export default RoundButton;
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: 'transparent',
+    borderRadius: 16,
+    // border: 'none',
+    // color: var(--accent-color);
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

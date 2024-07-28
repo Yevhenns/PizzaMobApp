@@ -25,12 +25,14 @@ export function Button({
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: 12,
+    height: 38,
     paddingHorizontal: 24,
     alignItems: 'center',
     borderRadius: 12,
     backgroundColor: '#de612b',
     fontSize: 18,
+    display: 'flex',
+    justifyContent: 'center',
   },
   buttonText: {
     color: 'white',

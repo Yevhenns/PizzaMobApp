@@ -45,9 +45,8 @@ export function ProductsList({data, options}: ProductsListProps) {
   const setFavoriteProducts = (_id: string) => {
     if (favoriteProducts.some(item => item._id === _id)) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   return (

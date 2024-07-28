@@ -23,12 +23,10 @@ const cartSlice = createSlice({
         if (options1.length !== options2.length) {
           return false;
         }
-        const sortedOptions1 = [...options1].sort();
-        const sortedOptions2 = [...options2].sort();
 
-        return sortedOptions1.every(
-          (opt, index) => opt === sortedOptions2[index],
-        );
+        return options1
+          .sort()
+          .every((opt, index) => opt === options2.sort()[index]);
       }
 
       const existingItemIndex = state.filteredBasket.findIndex(

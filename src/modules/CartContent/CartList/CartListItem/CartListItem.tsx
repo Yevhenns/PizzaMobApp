@@ -26,7 +26,7 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
         <RoundButton
           style={css.deleteButton}
           onPress={() => deleteCartItem(cart_id)}>
-          <Remove />
+          <Remove color={'#de612b'} />
         </RoundButton>
       </View>
       {options.length > 0 && (

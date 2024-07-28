@@ -43,11 +43,11 @@ export function CartListItemQuantity({
         onPress={decrement}
         disabled={quantity === 1}
         aria-label="minus">
-        <ChevronLeft color="red" />
+        <ChevronLeft color="#de612b" />
       </RoundButton>
       <Text>{quantity}</Text>
       <RoundButton onPress={increment} aria-label="plus">
-        <ChevronRight color="red" />
+        <ChevronRight color="#de612b" />
       </RoundButton>
     </View>
   );

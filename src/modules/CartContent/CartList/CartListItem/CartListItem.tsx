@@ -31,12 +31,11 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
       </View>
       {options.length > 0 && (
         <View>
-          <Text>Додаткові опції:</Text>
           <View>
             {options.map(item => {
               return (
                 <View key={item}>
-                  <Text>{item}</Text>
+                  <Text>+ {item}</Text>
                 </View>
               );
             })}
@@ -49,8 +48,8 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
 
 const css = StyleSheet.create({
   wrapper: {
-    borderColor: 'red',
-    borderWidth: 1,
+    borderColor: '#de612b',
+    borderWidth: 2,
     borderRadius: 10,
     padding: 5,
   },

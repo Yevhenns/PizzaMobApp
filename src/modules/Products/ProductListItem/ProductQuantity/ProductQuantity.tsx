@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {ChevronLeft} from '../../../../components/icons/ChevronLeft';
 import {ChevronRight} from '../../../../components/icons/ChevronRight';
-import Checkbox from '../../../../UI/Checkbox/Checkbox';
+import {Checkbox} from '../../../../UI/Checkbox/Checkbox';
 import {StyleSheet} from 'react-native';
 
 interface ProductQuantityProps {

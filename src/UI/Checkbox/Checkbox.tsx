@@ -1,4 +1,4 @@
-import React, {FC, useState, PropsWithRef} from 'react';
+import {useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,21 +6,19 @@ import {
   TouchableOpacityProps,
   View,
 } from 'react-native';
-import {HeartFilled} from '../../components/icons/HeartFilled';
-import {Heart} from '../../components/icons/Heart';
 
-interface Props extends TouchableOpacityProps {
+interface CheckboxProps extends TouchableOpacityProps {
   label: string;
   handleChange: () => void;
   labelLeft?: boolean;
 }
 
-const Checkbox: FC<PropsWithRef<Props>> = ({
+export function Checkbox({
   label,
   handleChange,
   labelLeft = false,
   ...props
-}) => {
+}: CheckboxProps) {
   const [isChecked, setIsChecked] = useState(false);
 
   const showOptions = () => {
@@ -30,28 +28,19 @@ const Checkbox: FC<PropsWithRef<Props>> = ({
 
   return (
     <TouchableOpacity
-      style={[
-        CheckboxCSS.checkbox,
-        labelLeft ? CheckboxCSS.left : CheckboxCSS.right,
-      ]}
+      style={[css.checkbox, labelLeft ? css.left : css.right]}
       onPress={showOptions}>
-      <View>
-        {isChecked ? (
-          <HeartFilled color={'black'} />
-        ) : (
-          <Heart color={'black'} />
-        )}
+      <View style={css.checkboxButton}>
+        {!isChecked ? <View /> : <View style={css.checkboxChecked} />}
       </View>
       <Text>{label}</Text>
     </TouchableOpacity>
   );
-};
+}
 
 Checkbox.displayName = 'Checkbox';
 
-export default Checkbox;
-
-const CheckboxCSS = StyleSheet.create({
+const css = StyleSheet.create({
   checkbox: {
     display: 'flex',
     alignItems: 'center',
@@ -62,5 +51,21 @@ const CheckboxCSS = StyleSheet.create({
   },
   right: {
     flexDirection: 'row',
+  },
+  checkboxButton: {
+    width: 32,
+    height: 32,
+    borderWidth: 2,
+    borderColor: '#de612b',
+    borderRadius: 10,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  checkboxChecked: {
+    width: 18,
+    height: 18,
+    backgroundColor: '#de612b',
+    borderRadius: 4,
   },
 });

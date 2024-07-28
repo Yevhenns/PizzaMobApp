@@ -38,10 +38,15 @@ const cartSlice = createSlice({
       );
 
       if (existingItemIndex !== -1) {
-        state.filteredBasket[existingItemIndex].quantity +=
-          action.payload.quantity;
-        state.filteredBasket[existingItemIndex].totalPrice +=
-          action.payload.totalPrice;
+        state.filteredBasket[existingItemIndex] = {
+          ...state.filteredBasket[existingItemIndex],
+          quantity:
+            state.filteredBasket[existingItemIndex].quantity +
+            action.payload.quantity,
+          totalPrice:
+            state.filteredBasket[existingItemIndex].totalPrice +
+            action.payload.totalPrice,
+        };
       } else {
         const newCartItem = {
           ...action.payload,

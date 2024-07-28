@@ -1,15 +1,14 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import ProductQuantity from './ProductQuantity/ProductQuantity';
+import {ProductQuantity} from './ProductQuantity/ProductQuantity';
 import {
   addToFavoriteAction,
   removeFromFavoriteAction,
 } from '../../../redux/products/productsSlice';
-import ProductFooter from './ProductFooter/ProductFooter';
-import ProductDescription from './ProductDescription/ProductDescription';
+import {ProductFooter} from './ProductFooter/ProductFooter';
+import {ProductDescription} from './ProductDescription/ProductDescription';
 import {useAppDispatch} from '../../../redux/hooks';
 import Toast from 'react-native-toast-message';
-// import { ProductListItemCSS } from './ProductListItem.styles';
 import {ProductOptionsList} from './ProductOptionsList/ProductOptionsList';
 
 interface ProductListItemProps {
@@ -138,9 +137,7 @@ export function ProductListItem({
   );
 }
 
-export default ProductListItem;
-
-export const ProductListItemCSS = StyleSheet.create({
+const ProductListItemCSS = StyleSheet.create({
   listItem: {
     flex: 1,
     backgroundColor: '#fff',

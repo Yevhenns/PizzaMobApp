@@ -1,11 +1,10 @@
-import React from 'react';
 import {View} from 'react-native';
-import ProductListItem from './ProductListItem/ProductListItem';
+import {ProductListItem} from './ProductListItem/ProductListItem';
 import {addItem} from '../../redux/cart/cartSlice';
 import {getFavorites} from '../../redux/products/productsSlice';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import Toast from 'react-native-toast-message';
-import {ProductsListCSS} from './ProductsList.styles';
+import {StyleSheet} from 'react-native';
 
 interface ProductsListProps {
   data: Product[];
@@ -21,7 +20,7 @@ export function ProductsList({data, options}: ProductsListProps) {
     totalQuantity: number,
     promotion: boolean,
     totalPrice: number,
-    TotalPromPrice: number,
+    totalPromPrice: number,
     chosenOptions: string[],
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
@@ -33,21 +32,9 @@ export function ProductsList({data, options}: ProductsListProps) {
         title: title,
         quantity: totalQuantity,
         options: chosenOptions,
-        totalPrice: totalPrice,
+        totalPrice: promotion ? totalPromPrice : totalPrice,
       };
-      const cartPromItem = {
-        _id: _id,
-        photo: photo,
-        title: title,
-        quantity: totalQuantity,
-        options: chosenOptions,
-        totalPrice: TotalPromPrice,
-      };
-      if (promotion) {
-        dispatch(addItem(cartPromItem));
-      } else {
-        dispatch(addItem(cartItem));
-      }
+      dispatch(addItem(cartItem));
       Toast.show({
         type: 'success',
         text1: 'Додано у кошик',
@@ -64,7 +51,7 @@ export function ProductsList({data, options}: ProductsListProps) {
   };
 
   return (
-    <View style={ProductsListCSS.wrapper}>
+    <View style={css.wrapper}>
       {data.map(item => {
         return (
           <ProductListItem
@@ -81,4 +68,10 @@ export function ProductsList({data, options}: ProductsListProps) {
   );
 }
 
-export default ProductsList;
+const css = StyleSheet.create({
+  wrapper: {
+    rowGap: 20,
+    alignItems: 'stretch',
+    padding: 10,
+  },
+});

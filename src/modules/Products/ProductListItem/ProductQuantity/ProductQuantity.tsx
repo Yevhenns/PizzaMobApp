@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
-import {productQuantityCSS} from './ProductQuantity.styles';
 import {ChevronLeft} from '../../../../components/icons/ChevronLeft';
 import {ChevronRight} from '../../../../components/icons/ChevronRight';
 import Checkbox from '../../../../UI/Checkbox/Checkbox';
+import {StyleSheet} from 'react-native';
 
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;
@@ -34,8 +34,8 @@ export function ProductQuantity({
   }, [getTotalQuantity, quantity]);
 
   return (
-    <View style={productQuantityCSS.wrapper}>
-      <View style={productQuantityCSS.quantitySet}>
+    <View style={css.wrapper}>
+      <View style={css.quantitySet}>
         <RoundButton
           onPress={decrement}
           disabled={quantity === 1}
@@ -54,4 +54,21 @@ export function ProductQuantity({
   );
 }
 
-export default ProductQuantity;
+const css = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    justifyContent: 'space-between',
+  },
+  quantitySet: {
+    display: 'flex',
+    flexDirection: 'row',
+    gap: 5,
+    alignItems: 'center',
+  },
+  quantityText: {
+    fontSize: 16,
+  },
+});

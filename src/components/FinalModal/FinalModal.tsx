@@ -1,7 +1,6 @@
-import React, {FC} from 'react';
-import Button from '../../UI/Button/Button';
+import {Button} from '../../UI/Button/Button';
 // import LoaderModal from "../../UI/common/LoaderModal/LoaderModal";
-import Error500 from '../Error500/Error500';
+import {Error500} from '../Error500/Error500';
 import {Text, View} from 'react-native';
 import Loader from '../../UI/Loader/Loader';
 import {useAppSelector} from '../../redux/hooks';
@@ -11,12 +10,13 @@ import {
   getIsLoading,
   getOrderSum,
 } from '../../redux/cart/cartSlice';
+import {StyleSheet} from 'react-native';
 
 interface FinalModalProps {
   finalAction: () => void;
 }
 
-const FinalModal: FC<FinalModalProps> = ({finalAction}) => {
+export function FinalModal({finalAction}: FinalModalProps) {
   const filteredCart = useAppSelector(getFilteredCart);
   const sum = useAppSelector(getOrderSum);
   const isLoading = useAppSelector(getIsLoading);
@@ -59,13 +59,9 @@ const FinalModal: FC<FinalModalProps> = ({finalAction}) => {
       )}
     </View>
   );
-};
+}
 
-export default FinalModal;
-
-import {StyleSheet} from 'react-native';
-
-export const css = StyleSheet.create({
+const css = StyleSheet.create({
   modalWrapper: {
     //   background: rgba($color: #3d3838, $alpha: 0.7),
     display: 'flex',

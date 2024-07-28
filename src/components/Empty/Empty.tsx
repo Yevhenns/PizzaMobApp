@@ -15,7 +15,7 @@ export function Empty() {
   );
 }
 
-export const css = StyleSheet.create({
+const css = StyleSheet.create({
   emptyCart: {
     alignItems: 'center',
     gap: 10,

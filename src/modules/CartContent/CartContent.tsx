@@ -2,8 +2,7 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {Empty} from '../../components/Empty/Empty';
 import CartForm from './CartForm/CartForm';
-import CartList from './CartList/CartList';
-import {styles} from './CartContent.styles';
+import {CartList} from './CartList/CartList';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {
   deleteItem,
@@ -11,13 +10,14 @@ import {
   getIsLoading,
 } from '../../redux/cart/cartSlice';
 import Loader from '../../UI/Loader/Loader';
+import {StyleSheet} from 'react-native';
 
 interface CartContentProps {
   deleteAllProducts: () => void;
   openModal: () => void;
 }
 
-const CartContent = ({deleteAllProducts, openModal}: CartContentProps) => {
+export function CartContent({deleteAllProducts, openModal}: CartContentProps) {
   const filteredCart = useAppSelector(getFilteredCart);
   const isLoading = useAppSelector(getIsLoading);
 
@@ -48,7 +48,7 @@ const CartContent = ({deleteAllProducts, openModal}: CartContentProps) => {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View style={css.wrapper}>
       {filteredCart.length > 0 ? (
         <>
           <CartList
@@ -62,6 +62,10 @@ const CartContent = ({deleteAllProducts, openModal}: CartContentProps) => {
       )}
     </View>
   );
-};
+}
 
-export default CartContent;
+const css = StyleSheet.create({
+  wrapper: {
+    padding: 10,
+  },
+});

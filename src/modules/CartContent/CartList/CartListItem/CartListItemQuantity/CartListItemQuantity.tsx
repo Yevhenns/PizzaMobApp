@@ -5,6 +5,7 @@ import RoundButton from '../../../../../UI/RoundButton/RoundButton';
 import {ChevronLeft} from '../../../../../components/icons/ChevronLeft';
 import {ChevronRight} from '../../../../../components/icons/ChevronRight';
 import {Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 interface CartListItemQuantityProps {
   chosenQuantity: number;
@@ -37,7 +38,7 @@ export function CartListItemQuantity({
   }, [cart_id, dispatch, price, pricePerItem, quantity]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={css.wrapper}>
       <RoundButton
         onPress={decrement}
         disabled={quantity === 1}
@@ -52,9 +53,7 @@ export function CartListItemQuantity({
   );
 }
 
-import {StyleSheet} from 'react-native';
-
-export const styles = StyleSheet.create({
+const css = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     gap: 5,

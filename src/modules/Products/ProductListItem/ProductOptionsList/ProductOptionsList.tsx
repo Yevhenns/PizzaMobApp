@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Checkbox from '../../../../UI/Checkbox/Checkbox';
 import CheckboxOption from '../../../../UI/Checkbox/CheckboxOption';
 
 type ProductOptionsListProps = {
@@ -30,7 +29,7 @@ export function ProductOptionsList({
     <View>
       {filteredByVegan.map(item => {
         return (
-          <View key={item.id} style={ProductOptionsListCSS.productItem}>
+          <View key={item.id} style={css.productItem}>
             <CheckboxOption title={item.title} handleChange={handleChange} />
             <Text>+ {item.price} грн</Text>
           </View>
@@ -40,7 +39,7 @@ export function ProductOptionsList({
   );
 }
 
-export const ProductOptionsListCSS = StyleSheet.create({
+const css = StyleSheet.create({
   productItem: {
     display: 'flex',
     flexDirection: 'row',

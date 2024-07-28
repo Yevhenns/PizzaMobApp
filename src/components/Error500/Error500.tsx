@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const Error500 = () => {
+export function Error500() {
   return (
     <View>
       <View>
@@ -11,6 +11,4 @@ const Error500 = () => {
       </View>
     </View>
   );
-};
-
-export default Error500;
+}

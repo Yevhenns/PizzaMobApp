@@ -63,6 +63,5 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: 'Inter-Regular',
-    fontSize: 16,
   },
 });

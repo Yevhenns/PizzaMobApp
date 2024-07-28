@@ -16,7 +16,7 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
     <View style={styles.wrapper}>
       <View style={styles.mainContent}>
         <Image source={{uri: photo}} width={50} height={50} />
-        <Text>{title}</Text>
+        <Text style={styles.text}>{title}</Text>
         <CartListItemQuantity
           chosenQuantity={quantity}
           cart_id={cart_id}
@@ -35,7 +35,7 @@ export function CartListItem({data, deleteCartItem}: CartListItemProps) {
             {options.map(item => {
               return (
                 <View key={item}>
-                  <Text>+ {item}</Text>
+                  <Text style={styles.text}>+ {item}</Text>
                 </View>
               );
             })}
@@ -62,9 +62,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   totalPrice: {
+    fontSize: 16,
+    fontFamily: 'Inter-Regular',
     flexBasis: 65,
   },
   deleteButton: {
     flexBasis: 32,
+  },
+  text: {
+    fontSize: 16,
+    fontFamily: 'Inter-Regular',
   },
 });

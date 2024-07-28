@@ -7,8 +7,4 @@ export const cartFormCSS = StyleSheet.create({
     gap: 5,
     width: '100%',
   },
-  buttonText: {
-    fontSize: 16,
-    color: 'white',
-  },
 });

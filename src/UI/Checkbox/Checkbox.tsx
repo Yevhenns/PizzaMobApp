@@ -33,7 +33,7 @@ export function Checkbox({
       <View style={styles.checkboxButton}>
         {!isChecked ? <View /> : <View style={styles.checkboxChecked} />}
       </View>
-      <Text>{label}</Text>
+      <Text style={styles.label}>{label}</Text>
     </TouchableOpacity>
   );
 }
@@ -67,5 +67,9 @@ const styles = StyleSheet.create({
     height: 18,
     backgroundColor: '#de612b',
     borderRadius: 4,
+  },
+  label: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 16,
   },
 });

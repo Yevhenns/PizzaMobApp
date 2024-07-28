@@ -42,7 +42,7 @@ export function CartListItemQuantity({
         aria-label="minus">
         <ChevronLeft color="#de612b" />
       </RoundButton>
-      <Text>{chosenQuantity}</Text>
+      <Text style={styles.text}>{chosenQuantity}</Text>
       <RoundButton onPress={increment} aria-label="plus">
         <ChevronRight color="#de612b" />
       </RoundButton>
@@ -56,5 +56,9 @@ const styles = StyleSheet.create({
     gap: 5,
     alignItems: 'center',
     marginLeft: 'auto',
+  },
+  text: {
+    fontSize: 16,
+    fontFamily: 'Inter-Regular',
   },
 });

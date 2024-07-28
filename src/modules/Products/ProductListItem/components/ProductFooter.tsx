@@ -1,4 +1,3 @@
-import React from 'react';
 import {View, Text} from 'react-native';
 import {Button} from '../../../../UI/Button/Button';
 import {StyleSheet} from 'react-native';
@@ -27,7 +26,7 @@ export function ProductFooter({
           <Text style={styles.promPrice}>{totalPromPrice} грн</Text>
         </View>
       ) : (
-        <Text style={styles.price}>{totalPrice} грн</Text>
+        <Text style={styles.promPrice}>{totalPrice} грн</Text>
       )}
       <Button
         onPress={() =>
@@ -40,9 +39,7 @@ export function ProductFooter({
             optionsTitles,
           )
         }>
-        <View>
-          <Text style={styles.buttonText}>В кошик</Text>
-        </View>
+        В кошик
       </Button>
     </View>
   );
@@ -55,32 +52,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
-  price: {
-    // font-family: var(--main-font);
-    fontSize: 18,
-    // color: var(--black-color);
-    fontWeight: '700',
-  },
   priceWrapper: {
     flexDirection: 'column',
   },
   promPrice: {
-    // font-family: var(--main-font);
+    fontFamily: 'Comfortaa-Bold',
     fontSize: 18,
     color: '#de612b',
-    // color: var(--accent-color);
-    fontWeight: '700',
   },
   oldPrice: {
-    // font-family: var(--main-font);
+    fontFamily: 'Comfortaa-Bold',
     fontSize: 16,
-    // color: var(--black-color);
-    fontWeight: '700',
+    color: 'black',
     textDecorationLine: 'line-through',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
   },
   inBasketContainer: {
     flexDirection: 'row',

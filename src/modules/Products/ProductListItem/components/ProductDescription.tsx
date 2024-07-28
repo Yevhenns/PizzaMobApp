@@ -1,4 +1,3 @@
-import React from 'react';
 import {View, Text, Image} from 'react-native';
 import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {Heart} from '../../../../components/icons/Heart';
@@ -70,10 +69,14 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   title: {
+    fontFamily: 'Comfortaa-Bold',
     fontSize: 24,
+    color: '#000000',
   },
   text: {
+    fontFamily: 'Inter-Regular',
     fontSize: 16,
+    color: '#989898',
   },
   img: {
     marginLeft: 'auto',
@@ -87,9 +90,9 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 12,
-    //           font-family: var(--main-font);
   },
   promotionText: {
+    fontFamily: 'Comfortaa-SemiBold',
     color: 'white',
   },
   favorite: {

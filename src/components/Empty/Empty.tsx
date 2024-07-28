@@ -10,7 +10,7 @@ export function Empty() {
         width={236}
         height={257}
       />
-      <Text>Тут нічого немає!</Text>
+      <Text style={styles.text}>Тут нічого немає!</Text>
     </View>
   );
 }
@@ -20,5 +20,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 10,
     padding: 20,
+  },
+  text: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 16,
   },
 });

@@ -42,7 +42,7 @@ export function ProductQuantity({
           aria-label="minus">
           <ChevronLeft color={'#de612b'} />
         </RoundButton>
-        <Text>{quantity} шт.</Text>
+        <Text style={styles.quantityText}>{quantity} шт.</Text>
         <RoundButton onPress={increment} aria-label="plus">
           <ChevronRight color={'#de612b'} />
         </RoundButton>
@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
   },
   quantityText: {
     fontSize: 16,
+    fontFamily: 'Inter-Regular',
   },
 });

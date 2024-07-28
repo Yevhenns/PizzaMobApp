@@ -30,7 +30,7 @@ export function ProductOptionsList({
         return (
           <View key={item.id} style={styles.productItem}>
             <CheckboxOption title={item.title} handleChange={handleChange} />
-            <Text>+ {item.price} грн</Text>
+            <Text style={styles.optionPrice}>+ {item.price} грн</Text>
           </View>
         );
       })}
@@ -48,5 +48,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  optionPrice: {
+    fontFamily: 'Inter-Regular',
+    fontSize: 16,
   },
 });

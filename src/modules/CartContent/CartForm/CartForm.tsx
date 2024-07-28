@@ -97,7 +97,7 @@ const CartForm: FC<Props> = ({openModal, order}) => {
 
             <Button
               onPress={handleSubmit as (e?: GestureResponderEvent) => void}>
-              <Text style={cartFormCSS.buttonText}>Підтвердити</Text>
+              Підтвердити
             </Button>
           </>
         )}

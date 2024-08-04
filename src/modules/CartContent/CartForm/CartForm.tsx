@@ -1,27 +1,25 @@
-import React, {FC, HTMLProps} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {addInfo, getOrderSum} from '../../../redux/cart/cartSlice';
 import {sendOrder} from '../../../redux/cart/cartOperations';
 import {Button} from '../../../UI/Button/Button';
 import {Input} from '../../../UI/Input/Input';
-// import Checkbox from "../../../UI/Checkbox/Checkbox";
 import {GestureResponderEvent, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import {cartFormCSS} from './CartForm.styles';
 import {CartFormSchema} from './CartFormSchema';
 
-interface Props extends HTMLProps<HTMLFormElement> {
+interface CartFormProps {
   openModal: () => void;
-  order: TOrdered;
+  order: Ordered;
 }
 
-const CartForm: FC<Props> = ({openModal, order}) => {
+const CartForm = ({openModal, order}: CartFormProps) => {
   const orderSum = useAppSelector(getOrderSum);
   const dispatch = useAppDispatch();
 
-  const submit = (data: TInfo) => {
+  const submit = (data: Info) => {
     openModal();
-    const customerInfo: TInfo = {
+    const customerInfo: Info = {
       name: data.name,
       number: data.number,
       delivery: data.delivery,
@@ -29,7 +27,7 @@ const CartForm: FC<Props> = ({openModal, order}) => {
       comment: data.comment,
     };
     dispatch(addInfo(customerInfo));
-    const reqBody: TSummaryOrder = {customerInfo, order, orderSum};
+    const reqBody: SummaryOrder = {customerInfo, order, orderSum};
     dispatch(sendOrder(reqBody));
   };
 

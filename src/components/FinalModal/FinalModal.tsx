@@ -1,5 +1,4 @@
 import {Button} from '../../UI/Button/Button';
-// import LoaderModal from "../../UI/common/LoaderModal/LoaderModal";
 import {Error500} from '../Error500/Error500';
 import {Modal, Text, View} from 'react-native';
 import Loader from '../../UI/Loader/Loader';

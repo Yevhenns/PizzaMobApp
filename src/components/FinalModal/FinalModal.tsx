@@ -1,7 +1,7 @@
 import {Button} from '../../UI/Button/Button';
 // import LoaderModal from "../../UI/common/LoaderModal/LoaderModal";
 import {Error500} from '../Error500/Error500';
-import {Text, View} from 'react-native';
+import {Modal, Text, View} from 'react-native';
 import Loader from '../../UI/Loader/Loader';
 import {useAppSelector} from '../../redux/hooks';
 import {
@@ -27,9 +27,11 @@ export function FinalModal({finalAction}: FinalModalProps) {
   }
 
   return (
-    <View style={styles.modalWrapper}>
+    <Modal style={styles.modalWrapper}>
       {isLoading ? (
-        <Loader />
+        <View style={styles.loaderWrapper}>
+          <Loader />
+        </View>
       ) : (
         <View style={styles.modal}>
           <View style={styles.resultText}>
@@ -39,9 +41,9 @@ export function FinalModal({finalAction}: FinalModalProps) {
             <Text>Інформація про замовлення:</Text>
           </View>
           <View>
-            {filteredCart.map(({_id, title, quantity, totalPrice}) => {
+            {filteredCart.map(({cart_id, title, quantity, totalPrice}) => {
               return (
-                <View key={_id}>
+                <View key={cart_id}>
                   <Text>
                     {title} - {quantity} шт. - {totalPrice} грн.
                   </Text>
@@ -57,26 +59,29 @@ export function FinalModal({finalAction}: FinalModalProps) {
           </Button>
         </View>
       )}
-    </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
   modalWrapper: {
-    //   background: rgba($color: #3d3838, $alpha: 0.7),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 50,
     overflow: 'scroll',
   },
+  loaderWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
   modal: {
-    // backgroundColor: var(--white-color),
-    // color: var(--black-color),
-    // font-family: var(--secondary-font),
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
   resultText: {
     alignItems: 'center',

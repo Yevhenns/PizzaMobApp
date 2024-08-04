@@ -1,107 +1,195 @@
+import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {addInfo, getOrderSum} from '../../../redux/cart/cartSlice';
 import {sendOrder} from '../../../redux/cart/cartOperations';
 import {Button} from '../../../UI/Button/Button';
-import {Input} from '../../../UI/Input/Input';
-import {GestureResponderEvent, Text, View} from 'react-native';
-import {Formik} from 'formik';
-import {cartFormCSS} from './CartForm.styles';
-import {CartFormSchema} from './CartFormSchema';
+import {Text, TextInput, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Controller, SubmitHandler, useForm} from 'react-hook-form';
+import {MaskedTextInput} from 'react-native-mask-text';
+import {Checkbox} from '../../../UI/Checkbox/Checkbox';
 
 interface CartFormProps {
   openModal: () => void;
   order: Ordered;
 }
 
-const CartForm = ({openModal, order}: CartFormProps) => {
+export function CartForm({openModal, order}: CartFormProps) {
+  const [addressShown, setAddressShown] = useState(false);
+
+  const {
+    handleSubmit,
+    formState: {errors},
+    control,
+  } = useForm<Info>({mode: 'onChange'});
+
   const orderSum = useAppSelector(getOrderSum);
   const dispatch = useAppDispatch();
 
-  const submit = (data: Info) => {
+  const onSubmit: SubmitHandler<Info> = data => {
     openModal();
     const customerInfo: Info = {
-      name: data.name,
-      number: data.number,
-      delivery: data.delivery,
       address: data.address,
       comment: data.comment,
+      delivery: data.delivery,
+      name: data.name,
+      number: data.number,
     };
     dispatch(addInfo(customerInfo));
     const reqBody: SummaryOrder = {customerInfo, order, orderSum};
     dispatch(sendOrder(reqBody));
   };
 
+  const handleShowDeliveryAddress = () => {
+    setAddressShown(!addressShown);
+  };
+
   return (
-    <View style={cartFormCSS.form}>
-      <Formik
-        initialValues={{
-          name: '',
-          number: '',
-          delivery: false,
-          address: '',
-          comment: '',
+    <View style={styles.form}>
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+          validate: {
+            required: value => value.trim().length > 1,
+          },
         }}
-        onSubmit={values => submit(values)}
-        validationSchema={CartFormSchema}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          errors,
-          touched,
-        }) => (
-          <>
-            <Input
-              label="Ім'я"
+        render={({field: {onChange, onBlur, value}}) => (
+          <View style={styles.fieldset}>
+            <Text>Ім'я</Text>
+            <TextInput
+              style={styles.input}
               placeholder="Введіть ім'я"
-              value={values.name}
-              onChangeText={handleChange('name')}
-              onBlur={handleBlur('name')}
-              error={errors.name}
-              touched={touched.name}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
             />
-
-            <Input
-              label="Номер телефону в форматі: 0991115533"
-              placeholder="Введіть номер телефону"
-              value={values.number}
-              onChangeText={handleChange('number')}
-              onBlur={handleBlur('number')}
-              error={errors.number}
-              touched={touched.number}
-              keyboardType="phone-pad"
-            />
-
-            <Input
-              label="Адреса"
-              placeholder="Введіть адресу"
-              value={values.address}
-              onChangeText={handleChange('address')}
-              onBlur={handleBlur('address')}
-              error={errors.address}
-              touched={touched.address}
-            />
-
-            <Input
-              label="Коментар"
-              placeholder="Введіть коментар"
-              value={values.comment}
-              onChangeText={handleChange('comment')}
-              onBlur={handleBlur('comment')}
-              numberOfLines={5}
-              textArea
-            />
-
-            <Button
-              onPress={handleSubmit as (e?: GestureResponderEvent) => void}>
-              Підтвердити
-            </Button>
-          </>
+          </View>
         )}
-      </Formik>
+        name="name"
+      />
+      <View style={styles.errorContainer}>
+        {errors.name && (
+          <Text style={styles.errorMessage}>Це обов'язкове поле!</Text>
+        )}
+      </View>
+
+      <Controller
+        control={control}
+        rules={{
+          required: true,
+          validate: {
+            required: value => value.length === 15,
+          },
+        }}
+        render={({field: {onChange, onBlur, value}}) => (
+          <View style={styles.fieldset}>
+            <Text>Номер телефону</Text>
+            <MaskedTextInput
+              mask="(099) 999-99-99"
+              style={styles.input}
+              placeholder="(099) 999-99-99"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              keyboardType="number-pad"
+            />
+          </View>
+        )}
+        name="number"
+      />
+      <View style={styles.errorContainer}>
+        {errors.number && (
+          <Text style={styles.errorMessage}>Це обов'язкове поле!</Text>
+        )}
+      </View>
+
+      <Checkbox label="Доставка" handleChange={handleShowDeliveryAddress} />
+
+      {addressShown && (
+        <>
+          <Controller
+            control={control}
+            rules={
+              addressShown
+                ? {
+                    required: true,
+                    validate: {
+                      required: value => value!.trim().length > 1,
+                    },
+                  }
+                : {}
+            }
+            render={({field: {onChange, onBlur, value}}) => (
+              <View style={styles.fieldset}>
+                <Text>Адреса</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Введіть адресу"
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              </View>
+            )}
+            name="address"
+          />
+          <View style={styles.errorContainer}>
+            {errors.address && (
+              <Text style={styles.errorMessage}>Це обов'язкове поле!</Text>
+            )}
+          </View>
+        </>
+      )}
+
+      <Controller
+        control={control}
+        render={({field: {onChange, onBlur, value}}) => (
+          <View style={styles.fieldset}>
+            <Text>Коментар</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Введіть коментар"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              numberOfLines={5}
+              textAlignVertical="top"
+            />
+          </View>
+        )}
+        name="comment"
+      />
+
+      <Text>* обов'язкові поля</Text>
+      <Button onPress={handleSubmit(onSubmit)}>Підтвердити</Button>
     </View>
   );
-};
+}
 
-export default CartForm;
+const styles = StyleSheet.create({
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+    width: '100%',
+  },
+  fieldset: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+  },
+  input: {
+    width: '100%',
+    padding: 12,
+    borderRadius: 5,
+    borderColor: '#de612b',
+    borderWidth: 1,
+  },
+  errorContainer: {
+    height: 20,
+  },
+  errorMessage: {
+    color: 'red',
+  },
+});

@@ -17,7 +17,6 @@ export function Checkbox({
   label,
   handleChange,
   labelLeft = false,
-  ...props
 }: CheckboxProps) {
   const [isChecked, setIsChecked] = useState(false);
 

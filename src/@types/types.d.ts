@@ -60,7 +60,7 @@ type AddToCart = (
   promotion: boolean,
   totalPrice: number,
   TotalPromPrice: number,
-  optionsArray: string[]
+  optionsArray: string[],
 ) => void;
 
 type ProductsResponse = {

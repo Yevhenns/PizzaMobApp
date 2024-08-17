@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -12,7 +12,7 @@ interface CheckboxOptionProps extends TouchableOpacityProps {
   handleChange: (title: string, isChecked: boolean) => void;
 }
 
-export function CheckboxOption({title, handleChange}: CheckboxOptionProps) {
+export function CheckboxOption({ title, handleChange }: CheckboxOptionProps) {
   const [isChecked, setIsChecked] = useState(false);
 
   const showOptions = (title: string, isChecked: boolean) => {

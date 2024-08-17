@@ -1,15 +1,16 @@
-import {useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {ProductQuantity} from './components/ProductQuantity';
+import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import Toast from 'react-native-toast-message';
+
+import { useAppDispatch } from '../../../redux/hooks';
 import {
   addToFavoriteAction,
   removeFromFavoriteAction,
 } from '../../../redux/products/productsSlice';
-import {ProductFooter} from './components/ProductFooter';
-import {ProductDescription} from './components/ProductDescription';
-import {useAppDispatch} from '../../../redux/hooks';
-import Toast from 'react-native-toast-message';
-import {ProductOptionsList} from './components/ProductOptionsList';
+import { ProductDescription } from './components/ProductDescription';
+import { ProductFooter } from './components/ProductFooter';
+import { ProductOptionsList } from './components/ProductOptionsList';
+import { ProductQuantity } from './components/ProductQuantity';
 
 interface ProductListItemProps {
   item: Product;

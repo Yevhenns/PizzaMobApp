@@ -1,11 +1,11 @@
-import {Text, TouchableOpacity, TouchableOpacityProps} from 'react-native';
-import {StyleSheet} from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 type ButtonProps = {
   onPress?: () => void;
 } & TouchableOpacityProps;
 
-export function Button({children, onPress}: ButtonProps) {
+export function Button({ children, onPress }: ButtonProps) {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{children}</Text>

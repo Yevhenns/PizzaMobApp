@@ -1,27 +1,28 @@
-import {useState} from 'react';
-import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
-import {addInfo, getOrderSum} from '../../../redux/cart/cartSlice';
-import {sendOrder} from '../../../redux/cart/cartOperations';
-import {Text, TextInput, View} from 'react-native';
-import {StyleSheet} from 'react-native';
-import {Controller, SubmitHandler, useForm} from 'react-hook-form';
-import {MaskedTextInput} from 'react-native-mask-text';
-import {Checkbox} from '../../Checkbox/Checkbox';
-import {Button} from '../../Button/Button';
+import { useState } from 'react';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Text, TextInput, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { MaskedTextInput } from 'react-native-mask-text';
+
+import { sendOrder } from '../../../redux/cart/cartOperations';
+import { addInfo, getOrderSum } from '../../../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { Button } from '../../Button/Button';
+import { Checkbox } from '../../Checkbox/Checkbox';
 
 interface CartFormProps {
   openModal: () => void;
   order: Ordered;
 }
 
-export function CartForm({openModal, order}: CartFormProps) {
+export function CartForm({ openModal, order }: CartFormProps) {
   const [addressShown, setAddressShown] = useState(false);
 
   const {
     handleSubmit,
-    formState: {errors},
+    formState: { errors },
     control,
-  } = useForm<Info>({mode: 'onChange'});
+  } = useForm<Info>({ mode: 'onChange' });
 
   const orderSum = useAppSelector(getOrderSum);
   const dispatch = useAppDispatch();
@@ -36,7 +37,7 @@ export function CartForm({openModal, order}: CartFormProps) {
       number: data.number,
     };
     dispatch(addInfo(customerInfo));
-    const reqBody: SummaryOrder = {customerInfo, order, orderSum};
+    const reqBody: SummaryOrder = { customerInfo, order, orderSum };
     dispatch(sendOrder(reqBody));
   };
 
@@ -54,7 +55,7 @@ export function CartForm({openModal, order}: CartFormProps) {
             required: value => value.trim().length > 1,
           },
         }}
-        render={({field: {onChange, onBlur, value}}) => (
+        render={({ field: { onChange, onBlur, value } }) => (
           <View style={styles.fieldset}>
             <Text style={styles.label}>Ім'я</Text>
             <TextInput
@@ -83,7 +84,7 @@ export function CartForm({openModal, order}: CartFormProps) {
             required: value => value.length === 15,
           },
         }}
-        render={({field: {onChange, onBlur, value}}) => (
+        render={({ field: { onChange, onBlur, value } }) => (
           <View style={styles.fieldset}>
             <Text style={styles.label}>Номер телефону</Text>
             <MaskedTextInput
@@ -122,7 +123,7 @@ export function CartForm({openModal, order}: CartFormProps) {
                   }
                 : {}
             }
-            render={({field: {onChange, onBlur, value}}) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <View style={styles.fieldset}>
                 <Text style={styles.label}>Адреса</Text>
                 <TextInput
@@ -147,7 +148,7 @@ export function CartForm({openModal, order}: CartFormProps) {
 
       <Controller
         control={control}
-        render={({field: {onChange, onBlur, value}}) => (
+        render={({ field: { onChange, onBlur, value } }) => (
           <View style={styles.fieldset}>
             <Text style={styles.label}>Коментар</Text>
             <TextInput

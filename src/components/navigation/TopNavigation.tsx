@@ -1,7 +1,8 @@
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {PizzasScreen} from '../../screens/PizzasScreen';
-import {DrinksScreen} from '../../screens/DrinksScreen';
-import {AppetizersScreen} from '../../screens/AppetizersScreen';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+import { AppetizersScreen } from '../../screens/AppetizersScreen';
+import { DrinksScreen } from '../../screens/DrinksScreen';
+import { PizzasScreen } from '../../screens/PizzasScreen';
 
 const TopTab = createMaterialTopTabNavigator();
 

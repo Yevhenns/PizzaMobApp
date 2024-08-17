@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
-import {ChevronLeft} from '../../../../components/icons/ChevronLeft';
-import {ChevronRight} from '../../../../components/icons/ChevronRight';
-import {StyleSheet} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { ChevronLeft } from '../../../../components/icons/ChevronLeft';
+import { ChevronRight } from '../../../../components/icons/ChevronRight';
+import { Checkbox } from '../../../Checkbox/Checkbox';
 import RoundButton from '../../../RoundButton/RoundButton';
-import {Checkbox} from '../../../Checkbox/Checkbox';
 
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;

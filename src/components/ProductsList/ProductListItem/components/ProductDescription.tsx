@@ -1,7 +1,8 @@
-import {View, Text, Image} from 'react-native';
-import {Heart} from '../../../../components/icons/Heart';
-import {HeartFilled} from '../../../../components/icons/HeartFilled';
-import {StyleSheet} from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { Heart } from '../../../../components/icons/Heart';
+import { HeartFilled } from '../../../../components/icons/HeartFilled';
 import RoundButton from '../../../RoundButton/RoundButton';
 
 interface ProductDescriptionProps {
@@ -29,7 +30,7 @@ export function ProductDescription({
       <View>
         <Image
           style={styles.img}
-          source={{uri: photo}}
+          source={{ uri: photo }}
           width={200}
           height={200}
         />

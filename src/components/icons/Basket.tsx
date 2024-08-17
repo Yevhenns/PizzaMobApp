@@ -1,5 +1,5 @@
-import {StyleSheet, View} from 'react-native';
-import Svg, {Path, SvgProps} from 'react-native-svg';
+import { StyleSheet, View } from 'react-native';
+import Svg, { Path, SvgProps } from 'react-native-svg';
 
 export const Basket = (props: SvgProps) => {
   return (

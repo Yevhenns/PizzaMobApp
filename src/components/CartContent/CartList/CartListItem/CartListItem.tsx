@@ -1,21 +1,22 @@
-import {Text, View, Image} from 'react-native';
-import {Remove} from '../../../../components/icons/Remove';
-import {CartListItemQuantity} from './CartListItemQuantity/CartListItemQuantity';
-import {StyleSheet} from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { Remove } from '../../../../components/icons/Remove';
 import RoundButton from '../../../RoundButton/RoundButton';
+import { CartListItemQuantity } from './CartListItemQuantity/CartListItemQuantity';
 
 interface CartListItemProps {
   data: CartItem;
   deleteCartItem: (cart_id: string) => void;
 }
 
-export function CartListItem({data, deleteCartItem}: CartListItemProps) {
-  const {cart_id, photo, title, quantity, totalPrice, options} = data;
+export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
+  const { cart_id, photo, title, quantity, totalPrice, options } = data;
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.mainContent}>
-        <Image source={{uri: photo}} width={50} height={50} />
+        <Image source={{ uri: photo }} width={50} height={50} />
         <Text style={styles.text}>{title}</Text>
         <CartListItemQuantity
           chosenQuantity={quantity}

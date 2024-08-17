@@ -1,22 +1,26 @@
-import {View} from 'react-native';
-import {Empty} from '../../components/Empty/Empty';
-import {CartForm} from './CartForm/CartForm';
-import {CartList} from './CartList/CartList';
-import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { Empty } from '../../components/Empty/Empty';
 import {
   deleteItem,
   getFilteredCart,
   getIsLoading,
 } from '../../redux/cart/cartSlice';
-import {StyleSheet} from 'react-native';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import Loader from '../Loader/Loader';
+import { CartForm } from './CartForm/CartForm';
+import { CartList } from './CartList/CartList';
 
 interface CartContentProps {
   deleteAllProducts: () => void;
   openModal: () => void;
 }
 
-export function CartContent({deleteAllProducts, openModal}: CartContentProps) {
+export function CartContent({
+  deleteAllProducts,
+  openModal,
+}: CartContentProps) {
   const filteredCart = useAppSelector(getFilteredCart);
   const isLoading = useAppSelector(getIsLoading);
 

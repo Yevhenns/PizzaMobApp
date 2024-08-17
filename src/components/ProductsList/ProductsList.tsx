@@ -1,17 +1,18 @@
-import {View} from 'react-native';
-import {ProductListItem} from './ProductListItem/ProductListItem';
-import {addItem} from '../../redux/cart/cartSlice';
-import {getFavorites} from '../../redux/products/productsSlice';
-import {useAppDispatch, useAppSelector} from '../../redux/hooks';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Toast from 'react-native-toast-message';
-import {StyleSheet} from 'react-native';
+
+import { addItem } from '../../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { getFavorites } from '../../redux/products/productsSlice';
+import { ProductListItem } from './ProductListItem/ProductListItem';
 
 interface ProductsListProps {
   data: Product[];
   options?: Option[];
 }
 
-export function ProductsList({data, options}: ProductsListProps) {
+export function ProductsList({ data, options }: ProductsListProps) {
   const dispatch = useAppDispatch();
   const favoriteProducts = useAppSelector(getFavorites);
 
@@ -25,7 +26,7 @@ export function ProductsList({data, options}: ProductsListProps) {
   ) => {
     const chosenProduct = data.find(item => item._id === _id);
     if (chosenProduct) {
-      const {photo, title, _id} = chosenProduct;
+      const { photo, title, _id } = chosenProduct;
       const cartItem = {
         _id: _id,
         photo: photo,

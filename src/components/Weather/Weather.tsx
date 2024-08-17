@@ -1,6 +1,7 @@
-import {useEffect, useState} from 'react';
-import {showDniproWeather} from './showDniproWeather';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import { useEffect, useState } from 'react';
+import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { showDniproWeather } from './showDniproWeather';
 
 export function Weather() {
   const [weather, setWeather] = useState<[] | ForecastDay[]>([]);
@@ -29,7 +30,7 @@ export function Weather() {
               <Text style={styles.text}>{item.avgtemp} C°</Text>
               <Text style={styles.text}>{item.date}</Text>
               <Text style={styles.text}>{item.conditionText}</Text>
-              <Image source={{uri: item.icon}} width={100} height={100} />
+              <Image source={{ uri: item.icon }} width={100} height={100} />
             </View>
           );
         })}

@@ -1,5 +1,5 @@
-import {View, Text, Image} from 'react-native';
-import {StyleSheet} from 'react-native';
+import { Image, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export function Empty() {
   return (

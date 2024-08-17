@@ -1,6 +1,6 @@
+import { BASE_URL } from '@env';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {BASE_URL} from '@env';
 
 export const sendOrder = createAsyncThunk<
   number,
@@ -8,7 +8,7 @@ export const sendOrder = createAsyncThunk<
   {
     rejectValue: string;
   }
->('basket/sendOrder', async (order, {rejectWithValue}) => {
+>('basket/sendOrder', async (order, { rejectWithValue }) => {
   try {
     const res = await axios.post(`${BASE_URL}/api/send_email`, order);
     return res.status;

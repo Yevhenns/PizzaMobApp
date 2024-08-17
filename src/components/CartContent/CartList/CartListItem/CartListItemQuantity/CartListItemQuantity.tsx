@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
-import {useAppDispatch} from '../../../../../redux/hooks';
-import {setQuantityAndPrice} from '../../../../../redux/cart/cartSlice';
-import {ChevronLeft} from '../../../../../components/icons/ChevronLeft';
-import {ChevronRight} from '../../../../../components/icons/ChevronRight';
-import {Text, View} from 'react-native';
-import {StyleSheet} from 'react-native';
+import { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { ChevronLeft } from '../../../../../components/icons/ChevronLeft';
+import { ChevronRight } from '../../../../../components/icons/ChevronRight';
+import { setQuantityAndPrice } from '../../../../../redux/cart/cartSlice';
+import { useAppDispatch } from '../../../../../redux/hooks';
 import RoundButton from '../../../../RoundButton/RoundButton';
 
 interface CartListItemQuantityProps {
@@ -31,7 +32,7 @@ export function CartListItemQuantity({
 
   useEffect(() => {
     const totalPrice = quantity * (price / chosenQuantity);
-    dispatch(setQuantityAndPrice({cart_id, quantity, totalPrice}));
+    dispatch(setQuantityAndPrice({ cart_id, quantity, totalPrice }));
   }, [quantity]);
 
   return (

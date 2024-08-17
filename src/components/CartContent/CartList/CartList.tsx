@@ -1,17 +1,18 @@
-import {useEffect} from 'react';
-import {Text, View} from 'react-native';
-import {CartListItem} from './CartListItem/CartListItem';
-import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
-import {addOrderSum, getFilteredCart} from '../../../redux/cart/cartSlice';
-import {StyleSheet} from 'react-native';
-import {Button} from '../../Button/Button';
+import { useEffect } from 'react';
+import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+import { addOrderSum, getFilteredCart } from '../../../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { Button } from '../../Button/Button';
+import { CartListItem } from './CartListItem/CartListItem';
 
 interface CartListProps {
   deleteCartItem: (cart_id: string) => void;
   deleteAllProducts: () => void;
 }
 
-export function CartList({deleteCartItem, deleteAllProducts}: CartListProps) {
+export function CartList({ deleteCartItem, deleteAllProducts }: CartListProps) {
   const filteredCart = useAppSelector(getFilteredCart);
 
   let sum = 0;

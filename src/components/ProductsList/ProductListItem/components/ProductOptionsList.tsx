@@ -1,6 +1,8 @@
-import {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {CheckboxOption} from '../../../Checkbox/CheckboxOption';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+
+import { CheckboxOption } from '../../../Checkbox/CheckboxOption';
+
 type ProductOptionsListProps = {
   options: Option[];
   handleChange: (title: string, isChecked: boolean) => void;

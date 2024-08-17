@@ -1,21 +1,22 @@
-import {Error500} from '../Error500/Error500';
-import {Modal, Text, View} from 'react-native';
-import {useAppSelector} from '../../redux/hooks';
+import { Modal, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
 import {
   getError,
   getFilteredCart,
   getIsLoading,
   getOrderSum,
 } from '../../redux/cart/cartSlice';
-import {StyleSheet} from 'react-native';
+import { useAppSelector } from '../../redux/hooks';
+import { Button } from '../Button/Button';
+import { Error500 } from '../Error500/Error500';
 import Loader from '../Loader/Loader';
-import {Button} from '../Button/Button';
 
 interface FinalModalProps {
   finalAction: () => void;
 }
 
-export function FinalModal({finalAction}: FinalModalProps) {
+export function FinalModal({ finalAction }: FinalModalProps) {
   const filteredCart = useAppSelector(getFilteredCart);
   const sum = useAppSelector(getOrderSum);
   const isLoading = useAppSelector(getIsLoading);
@@ -40,7 +41,7 @@ export function FinalModal({finalAction}: FinalModalProps) {
             <Text style={styles.text}>Інформація про замовлення:</Text>
           </View>
           <View>
-            {filteredCart.map(({cart_id, title, quantity, totalPrice}) => {
+            {filteredCart.map(({ cart_id, title, quantity, totalPrice }) => {
               return (
                 <View key={cart_id}>
                   <Text style={styles.text}>

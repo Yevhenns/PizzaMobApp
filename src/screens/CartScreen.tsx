@@ -1,10 +1,11 @@
-import {useState} from 'react';
-import {View} from 'react-native';
-import {useAppDispatch} from '../redux/hooks';
-import {deleteAllItems} from '../redux/cart/cartSlice';
-import {PagesWrapper} from '../components/PagesWrapper/PagesWrapper';
-import {FinalModal} from '../components/FinalModal/FinalModal';
-import {CartContent} from '../components/CartContent/CartContent';
+import { useState } from 'react';
+import { View } from 'react-native';
+
+import { CartContent } from '../components/CartContent/CartContent';
+import { FinalModal } from '../components/FinalModal/FinalModal';
+import { PagesWrapper } from '../components/PagesWrapper/PagesWrapper';
+import { deleteAllItems } from '../redux/cart/cartSlice';
+import { useAppDispatch } from '../redux/hooks';
 
 export function CartScreen() {
   const [open, setOpen] = useState(false);

@@ -1,8 +1,8 @@
 import {Text, View, Image} from 'react-native';
-import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {Remove} from '../../../../components/icons/Remove';
 import {CartListItemQuantity} from './CartListItemQuantity/CartListItemQuantity';
 import {StyleSheet} from 'react-native';
+import RoundButton from '../../../RoundButton/RoundButton';
 
 interface CartListItemProps {
   data: CartItem;
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Inter-Regular',
     flexBasis: 65,
+    color: '#000000',
   },
   deleteButton: {
     flexBasis: 32,
@@ -72,5 +73,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
+    color: '#000000',
   },
 });

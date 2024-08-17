@@ -7,49 +7,38 @@ import {
   View,
 } from 'react-native';
 
-interface CheckboxProps extends TouchableOpacityProps {
-  label: string;
-  handleChange: () => void;
-  labelLeft?: boolean;
+interface CheckboxOptionProps extends TouchableOpacityProps {
+  title: string;
+  handleChange: (title: string, isChecked: boolean) => void;
 }
 
-export function Checkbox({
-  label,
-  handleChange,
-  labelLeft = false,
-  ...props
-}: CheckboxProps) {
+export function CheckboxOption({title, handleChange}: CheckboxOptionProps) {
   const [isChecked, setIsChecked] = useState(false);
 
-  const showOptions = () => {
-    handleChange();
+  const showOptions = (title: string, isChecked: boolean) => {
     setIsChecked(!isChecked);
+    handleChange(title, !isChecked);
   };
 
   return (
     <TouchableOpacity
-      style={[styles.checkbox, labelLeft ? styles.left : styles.right]}
-      onPress={showOptions}>
+      style={styles.checkbox}
+      onPress={() => showOptions(title, isChecked)}>
       <View style={styles.checkboxButton}>
         {!isChecked ? <View /> : <View style={styles.checkboxChecked} />}
       </View>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.label}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
-Checkbox.displayName = 'Checkbox';
+CheckboxOption.displayName = 'Checkbox';
 
 const styles = StyleSheet.create({
   checkbox: {
     display: 'flex',
     alignItems: 'center',
     gap: 16,
-  },
-  left: {
-    flexDirection: 'row-reverse',
-  },
-  right: {
     flexDirection: 'row',
   },
   checkboxButton: {
@@ -70,6 +59,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: 'Inter-Regular',
-    fontSize: 16,
+    color: '#000000',
   },
 });

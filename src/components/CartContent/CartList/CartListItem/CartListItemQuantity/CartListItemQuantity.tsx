@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
 import {useAppDispatch} from '../../../../../redux/hooks';
 import {setQuantityAndPrice} from '../../../../../redux/cart/cartSlice';
-import RoundButton from '../../../../../UI/RoundButton/RoundButton';
 import {ChevronLeft} from '../../../../../components/icons/ChevronLeft';
 import {ChevronRight} from '../../../../../components/icons/ChevronRight';
 import {Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
+import RoundButton from '../../../../RoundButton/RoundButton';
 
 interface CartListItemQuantityProps {
   chosenQuantity: number;
@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
+    color: '#000000',
   },
 });

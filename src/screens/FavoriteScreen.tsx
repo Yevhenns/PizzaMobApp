@@ -2,10 +2,10 @@ import {View} from 'react-native';
 import {PagesWrapper} from '../components/PagesWrapper/PagesWrapper';
 import {useAppSelector} from '../redux/hooks';
 import {getFavorites, getIsLoading} from '../redux/products/productsSlice';
-import {ProductsList} from '../modules/Products/ProductsList';
 import {Empty} from '../components/Empty/Empty';
-import Loader from '../UI/Loader/Loader';
 import {options} from '../options';
+import Loader from '../components/Loader/Loader';
+import {ProductsList} from '../components/ProductsList/ProductsList';
 
 export function FavoriteScreen() {
   const isLoading = useAppSelector(getIsLoading);

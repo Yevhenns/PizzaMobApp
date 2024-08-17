@@ -2,8 +2,8 @@ import {getIsLoading, getProductsAll} from '../redux/products/productsSlice';
 import {useAppSelector} from '../redux/hooks';
 import {filterByCategory} from '../helpers/filterByCategory';
 import {PagesWrapper} from '../components/PagesWrapper/PagesWrapper';
-import {ProductsList} from '../modules/Products/ProductsList';
-import Loader from '../UI/Loader/Loader';
+import Loader from '../components/Loader/Loader';
+import {ProductsList} from '../components/ProductsList/ProductsList';
 
 export function AppetizersScreen() {
   const products = useAppSelector(getProductsAll);

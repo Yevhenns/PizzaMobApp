@@ -3,21 +3,11 @@ import {StyleSheet} from 'react-native';
 
 type ButtonProps = {
   onPress?: () => void;
-  disabled?: boolean;
 } & TouchableOpacityProps;
 
-export function Button({
-  disabled = false,
-  children,
-  onPress,
-  ...props
-}: ButtonProps) {
+export function Button({children, onPress}: ButtonProps) {
   return (
-    <TouchableOpacity
-      disabled={disabled}
-      style={styles.button}
-      onPress={onPress}
-      {...props}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.buttonText}>{children}</Text>
     </TouchableOpacity>
   );

@@ -80,8 +80,6 @@ export function ProductListItem({
   const handleChooseOptions = (title: string, isChecked: boolean) => {
     const optionData = options.find(item => item.title === title);
 
-    console.log(title, isChecked);
-
     if (optionData !== undefined) {
       if (isChecked && !optionsArray.includes(optionData)) {
         setOptionsArray([...optionsArray, optionData]);

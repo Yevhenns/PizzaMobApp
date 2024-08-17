@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {Empty} from '../../components/Empty/Empty';
-import CartForm from './CartForm/CartForm';
+import {CartForm} from './CartForm/CartForm';
 import {CartList} from './CartList/CartList';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {
@@ -9,8 +8,8 @@ import {
   getFilteredCart,
   getIsLoading,
 } from '../../redux/cart/cartSlice';
-import Loader from '../../UI/Loader/Loader';
 import {StyleSheet} from 'react-native';
+import Loader from '../Loader/Loader';
 
 interface CartContentProps {
   deleteAllProducts: () => void;

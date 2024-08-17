@@ -1,8 +1,5 @@
-import {Button} from '../../UI/Button/Button';
-// import LoaderModal from "../../UI/common/LoaderModal/LoaderModal";
 import {Error500} from '../Error500/Error500';
-import {Text, View} from 'react-native';
-import Loader from '../../UI/Loader/Loader';
+import {Modal, Text, View} from 'react-native';
 import {useAppSelector} from '../../redux/hooks';
 import {
   getError,
@@ -11,6 +8,8 @@ import {
   getOrderSum,
 } from '../../redux/cart/cartSlice';
 import {StyleSheet} from 'react-native';
+import Loader from '../Loader/Loader';
+import {Button} from '../Button/Button';
 
 interface FinalModalProps {
   finalAction: () => void;
@@ -27,22 +26,24 @@ export function FinalModal({finalAction}: FinalModalProps) {
   }
 
   return (
-    <View style={styles.modalWrapper}>
+    <Modal style={styles.modalWrapper}>
       {isLoading ? (
-        <Loader />
+        <View style={styles.loaderWrapper}>
+          <Loader />
+        </View>
       ) : (
         <View style={styles.modal}>
           <View style={styles.resultText}>
-            <Text>Дякуємо!</Text>
-            <Text>Ваше замовлення прийняте,</Text>
-            <Text>очікуйте дзвінок від менеджера</Text>
-            <Text>Інформація про замовлення:</Text>
+            <Text style={styles.text}>Дякуємо!</Text>
+            <Text style={styles.text}>Ваше замовлення прийняте,</Text>
+            <Text style={styles.text}>очікуйте дзвінок від менеджера</Text>
+            <Text style={styles.text}>Інформація про замовлення:</Text>
           </View>
           <View>
-            {filteredCart.map(({_id, title, quantity, totalPrice}) => {
+            {filteredCart.map(({cart_id, title, quantity, totalPrice}) => {
               return (
-                <View key={_id}>
-                  <Text>
+                <View key={cart_id}>
+                  <Text style={styles.text}>
                     {title} - {quantity} шт. - {totalPrice} грн.
                   </Text>
                 </View>
@@ -50,40 +51,51 @@ export function FinalModal({finalAction}: FinalModalProps) {
             })}
           </View>
           <View>
-            <Text>Загальна сума: {sum} грн.</Text>
+            <Text style={styles.text}>Загальна сума: {sum} грн.</Text>
           </View>
           <Button onPress={finalAction}>
             <Text style={styles.buttonText}>Вийти</Text>
           </Button>
         </View>
       )}
-    </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
   modalWrapper: {
-    //   background: rgba($color: #3d3838, $alpha: 0.7),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 50,
     overflow: 'scroll',
   },
+
+  loaderWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+
   modal: {
-    // backgroundColor: var(--white-color),
-    // color: var(--black-color),
-    // font-family: var(--secondary-font),
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
+
   resultText: {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
   },
+
+  text: {
+    color: '#000000',
+  },
+
   buttonText: {
     fontSize: 16,
     color: 'white',

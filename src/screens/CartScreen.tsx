@@ -3,8 +3,8 @@ import {View} from 'react-native';
 import {useAppDispatch} from '../redux/hooks';
 import {deleteAllItems} from '../redux/cart/cartSlice';
 import {PagesWrapper} from '../components/PagesWrapper/PagesWrapper';
-import {CartContent} from '../modules/CartContent/CartContent';
 import {FinalModal} from '../components/FinalModal/FinalModal';
+import {CartContent} from '../components/CartContent/CartContent';
 
 export function CartScreen() {
   const [open, setOpen] = useState(false);

@@ -1,10 +1,10 @@
-import {ProductsList} from '../modules/Products/ProductsList';
 import {PagesWrapper} from '../components/PagesWrapper/PagesWrapper';
 import {getIsLoading, getProductsAll} from '../redux/products/productsSlice';
 import {filterByCategory} from '../helpers/filterByCategory';
 import {useAppSelector} from '../redux/hooks';
-import Loader from '../UI/Loader/Loader';
 import {options} from '../options';
+import Loader from '../components/Loader/Loader';
+import {ProductsList} from '../components/ProductsList/ProductsList';
 
 export function PizzasScreen() {
   const products = useAppSelector(getProductsAll);

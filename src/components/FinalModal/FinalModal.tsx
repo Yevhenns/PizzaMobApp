@@ -1,7 +1,5 @@
-import {Button} from '../../UI/Button/Button';
 import {Error500} from '../Error500/Error500';
 import {Modal, Text, View} from 'react-native';
-import Loader from '../../UI/Loader/Loader';
 import {useAppSelector} from '../../redux/hooks';
 import {
   getError,
@@ -10,6 +8,8 @@ import {
   getOrderSum,
 } from '../../redux/cart/cartSlice';
 import {StyleSheet} from 'react-native';
+import Loader from '../Loader/Loader';
+import {Button} from '../Button/Button';
 
 interface FinalModalProps {
   finalAction: () => void;

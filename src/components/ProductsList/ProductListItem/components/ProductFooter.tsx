@@ -1,6 +1,6 @@
 import {View, Text} from 'react-native';
-import {Button} from '../../../../UI/Button/Button';
 import {StyleSheet} from 'react-native';
+import {Button} from '../../../Button/Button';
 
 interface ProductFooterProps extends ProductItem {
   addToCart: AddToCart;

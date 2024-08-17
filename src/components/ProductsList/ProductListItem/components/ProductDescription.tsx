@@ -1,8 +1,8 @@
 import {View, Text, Image} from 'react-native';
-import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {Heart} from '../../../../components/icons/Heart';
 import {HeartFilled} from '../../../../components/icons/HeartFilled';
 import {StyleSheet} from 'react-native';
+import RoundButton from '../../../RoundButton/RoundButton';
 
 interface ProductDescriptionProps {
   _id: string;

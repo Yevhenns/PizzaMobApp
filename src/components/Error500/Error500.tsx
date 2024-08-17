@@ -1,14 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet, RefreshControl} from 'react-native';
 
 export function Error500() {
   return (
-    <View>
-      <View>
-        <Text>Щось пішло не так!</Text>
-        <Text>Перезавантажте сторінку,</Text>
-        <Text>або завітайте пізніше</Text>
-      </View>
+    <View style={styles.modal}>
+      <Text style={styles.text}>Щось пішло не так!</Text>
+      <Text style={styles.text}>Будь ласка завітайте пізніше</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+
+  text: {
+    color: 'black',
+  },
+});

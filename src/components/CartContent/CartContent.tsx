@@ -8,8 +8,8 @@ import {
   getFilteredCart,
   getIsLoading,
 } from '../../redux/cart/cartSlice';
-import Loader from '../../UI/Loader/Loader';
 import {StyleSheet} from 'react-native';
+import Loader from '../Loader/Loader';
 
 interface CartContentProps {
   deleteAllProducts: () => void;

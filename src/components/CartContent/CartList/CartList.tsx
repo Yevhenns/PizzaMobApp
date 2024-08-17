@@ -1,10 +1,10 @@
 import {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import {CartListItem} from './CartListItem/CartListItem';
-import {Button} from '../../../UI/Button/Button';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {addOrderSum, getFilteredCart} from '../../../redux/cart/cartSlice';
 import {StyleSheet} from 'react-native';
+import {Button} from '../../Button/Button';
 
 interface CartListProps {
   deleteCartItem: (cart_id: string) => void;

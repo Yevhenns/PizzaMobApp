@@ -1,8 +1,8 @@
 import {Text, View, Image} from 'react-native';
-import RoundButton from '../../../../UI/RoundButton/RoundButton';
 import {Remove} from '../../../../components/icons/Remove';
 import {CartListItemQuantity} from './CartListItemQuantity/CartListItemQuantity';
 import {StyleSheet} from 'react-native';
+import RoundButton from '../../../RoundButton/RoundButton';
 
 interface CartListItemProps {
   data: CartItem;

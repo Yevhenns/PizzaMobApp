@@ -2,12 +2,12 @@ import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../../../redux/hooks';
 import {addInfo, getOrderSum} from '../../../redux/cart/cartSlice';
 import {sendOrder} from '../../../redux/cart/cartOperations';
-import {Button} from '../../../UI/Button/Button';
 import {Text, TextInput, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import {MaskedTextInput} from 'react-native-mask-text';
-import {Checkbox} from '../../../UI/Checkbox/Checkbox';
+import {Checkbox} from '../../Checkbox/Checkbox';
+import {Button} from '../../Button/Button';
 
 interface CartFormProps {
   openModal: () => void;

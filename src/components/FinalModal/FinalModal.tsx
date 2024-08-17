@@ -34,16 +34,16 @@ export function FinalModal({finalAction}: FinalModalProps) {
       ) : (
         <View style={styles.modal}>
           <View style={styles.resultText}>
-            <Text>Дякуємо!</Text>
-            <Text>Ваше замовлення прийняте,</Text>
-            <Text>очікуйте дзвінок від менеджера</Text>
-            <Text>Інформація про замовлення:</Text>
+            <Text style={styles.text}>Дякуємо!</Text>
+            <Text style={styles.text}>Ваше замовлення прийняте,</Text>
+            <Text style={styles.text}>очікуйте дзвінок від менеджера</Text>
+            <Text style={styles.text}>Інформація про замовлення:</Text>
           </View>
           <View>
             {filteredCart.map(({cart_id, title, quantity, totalPrice}) => {
               return (
                 <View key={cart_id}>
-                  <Text>
+                  <Text style={styles.text}>
                     {title} - {quantity} шт. - {totalPrice} грн.
                   </Text>
                 </View>
@@ -51,7 +51,7 @@ export function FinalModal({finalAction}: FinalModalProps) {
             })}
           </View>
           <View>
-            <Text>Загальна сума: {sum} грн.</Text>
+            <Text style={styles.text}>Загальна сума: {sum} грн.</Text>
           </View>
           <Button onPress={finalAction}>
             <Text style={styles.buttonText}>Вийти</Text>
@@ -69,12 +69,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     overflow: 'scroll',
   },
+
   loaderWrapper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
   },
+
   modal: {
     display: 'flex',
     flexDirection: 'column',
@@ -82,12 +84,18 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 10,
   },
+
   resultText: {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
     gap: 10,
   },
+
+  text: {
+    color: '#000000',
+  },
+
   buttonText: {
     fontSize: 16,
     color: 'white',

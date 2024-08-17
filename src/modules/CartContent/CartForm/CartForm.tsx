@@ -56,10 +56,11 @@ export function CartForm({openModal, order}: CartFormProps) {
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <View style={styles.fieldset}>
-            <Text>Ім'я</Text>
+            <Text style={styles.label}>Ім'я</Text>
             <TextInput
               style={styles.input}
               placeholder="Введіть ім'я"
+              placeholderTextColor={'grey'}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -84,11 +85,12 @@ export function CartForm({openModal, order}: CartFormProps) {
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <View style={styles.fieldset}>
-            <Text>Номер телефону</Text>
+            <Text style={styles.label}>Номер телефону</Text>
             <MaskedTextInput
               mask="(099) 999-99-99"
               style={styles.input}
               placeholder="(099) 999-99-99"
+              placeholderTextColor={'grey'}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -122,10 +124,11 @@ export function CartForm({openModal, order}: CartFormProps) {
             }
             render={({field: {onChange, onBlur, value}}) => (
               <View style={styles.fieldset}>
-                <Text>Адреса</Text>
+                <Text style={styles.label}>Адреса</Text>
                 <TextInput
                   style={styles.input}
                   placeholder="Введіть адресу"
+                  placeholderTextColor={'grey'}
                   onBlur={onBlur}
                   onChangeText={onChange}
                   value={value}
@@ -146,10 +149,11 @@ export function CartForm({openModal, order}: CartFormProps) {
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
           <View style={styles.fieldset}>
-            <Text>Коментар</Text>
+            <Text style={styles.label}>Коментар</Text>
             <TextInput
               style={styles.input}
               placeholder="Введіть коментар"
+              placeholderTextColor={'grey'}
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -174,11 +178,13 @@ const styles = StyleSheet.create({
     gap: 5,
     width: '100%',
   },
+
   fieldset: {
     display: 'flex',
     flexDirection: 'column',
     gap: 5,
   },
+
   input: {
     width: '100%',
     padding: 12,
@@ -186,9 +192,15 @@ const styles = StyleSheet.create({
     borderColor: '#de612b',
     borderWidth: 1,
   },
+
+  label: {
+    color: 'black',
+  },
+
   errorContainer: {
     height: 20,
   },
+
   errorMessage: {
     color: 'red',
   },

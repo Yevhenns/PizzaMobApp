@@ -60,5 +60,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
+    color: '#000000',
   },
 });

@@ -34,7 +34,7 @@ export function CartList({deleteCartItem, deleteAllProducts}: CartListProps) {
           />
         );
       })}
-      <Text style={styles.totalPayment}>До оплати {sum} грн</Text>
+      <Text style={styles.totalPayment}>До сплати: {sum} грн</Text>
       <Button onPress={deleteAllProducts}>Очистити кошик</Button>
     </View>
   );
@@ -51,5 +51,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Inter-Regular',
     fontSize: 16,
+    color: '#000000',
   },
 });

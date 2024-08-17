@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Inter-Regular',
     flexBasis: 65,
+    color: '#000000',
   },
   deleteButton: {
     flexBasis: 32,
@@ -72,5 +73,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
+    color: '#000000',
   },
 });

@@ -52,5 +52,6 @@ const styles = StyleSheet.create({
   optionPrice: {
     fontFamily: 'Inter-Regular',
     fontSize: 16,
+    color: '#000000',
   },
 });

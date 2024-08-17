@@ -59,5 +59,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: 'Inter-Regular',
+    color: '#000000',
   },
 });

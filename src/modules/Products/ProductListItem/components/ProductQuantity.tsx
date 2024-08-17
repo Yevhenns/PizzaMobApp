@@ -71,5 +71,6 @@ const styles = StyleSheet.create({
   quantityText: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
+    color: '#000000',
   },
 });

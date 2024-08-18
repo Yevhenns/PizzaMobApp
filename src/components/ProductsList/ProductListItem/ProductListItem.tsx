@@ -63,6 +63,7 @@ export function ProductListItem({
       Toast.show({
         type: 'info',
         text1: 'Видалено з улюблених',
+        visibilityTime: 1500,
       });
     } else {
       setIsFavorite(true);
@@ -70,6 +71,7 @@ export function ProductListItem({
       Toast.show({
         type: 'success',
         text1: 'Додано в улюблені',
+        visibilityTime: 1500,
       });
     }
   };

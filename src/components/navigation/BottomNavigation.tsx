@@ -2,6 +2,9 @@ import Toast from 'react-native-toast-message';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { getFilteredCart } from '../../redux/cart/cartSlice';
+import { useAppSelector } from '../../redux/hooks';
+import { getFavorites } from '../../redux/products/productsSlice';
 import { CartScreen } from '../../screens/CartScreen';
 import { FavoriteScreen } from '../../screens/FavoriteScreen';
 import { NewsScreen } from '../../screens/NewsScreen';
@@ -14,6 +17,9 @@ import TopNavigation from './TopNavigation';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
+  const cartLength = useAppSelector(getFilteredCart).length;
+  const favoriteLength = useAppSelector(getFavorites).length;
+
   return (
     <>
       <Tab.Navigator
@@ -42,6 +48,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({ color }) => <Heart color={color} />,
+            tabBarBadge: favoriteLength,
           }}
           name="Улюблене"
           component={FavoriteScreen}
@@ -50,6 +57,7 @@ const BottomNavigation = () => {
         <Tab.Screen
           options={{
             tabBarIcon: ({ color }) => <Basket color={color} />,
+            tabBarBadge: cartLength,
           }}
           name="Кошик"
           component={CartScreen}

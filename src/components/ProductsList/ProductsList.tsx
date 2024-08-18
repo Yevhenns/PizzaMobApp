@@ -2,19 +2,37 @@ import { View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Toast from 'react-native-toast-message';
 
+import { filterByCategory } from '../../helpers/filterByCategory';
+import { options } from '../../options';
 import { addItem } from '../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { getFavorites } from '../../redux/products/productsSlice';
+import {
+  getFavorites,
+  getProductsAll,
+  getPromotions,
+} from '../../redux/products/productsSlice';
 import { ProductListItem } from './ProductListItem/ProductListItem';
 
 interface ProductsListProps {
-  data: Product[];
-  options?: Option[];
+  category: string;
 }
 
-export function ProductsList({ data, options }: ProductsListProps) {
-  const dispatch = useAppDispatch();
+export function ProductsList({ category }: ProductsListProps) {
   const favoriteProducts = useAppSelector(getFavorites);
+  const products = useAppSelector(getProductsAll);
+  const promotionProducts = useAppSelector(getPromotions);
+
+  const dispatch = useAppDispatch();
+
+  const data = (() => {
+    if (category === 'promotions') {
+      return promotionProducts;
+    }
+    if (category === 'favorites') {
+      return favoriteProducts;
+    }
+    return filterByCategory(products, category);
+  })();
 
   const addToCart = (
     _id: string,
@@ -39,15 +57,13 @@ export function ProductsList({ data, options }: ProductsListProps) {
       Toast.show({
         type: 'success',
         text1: 'Додано у кошик',
+        visibilityTime: 1500,
       });
     }
   };
 
   const setFavoriteProducts = (_id: string) => {
-    if (favoriteProducts.some(item => item._id === _id)) {
-      return true;
-    }
-    return false;
+    return favoriteProducts.some(item => item._id === _id);
   };
 
   return (

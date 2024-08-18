@@ -1,13 +1,42 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 
 import { useFetchProducts } from '../../hooks/useFetchProducts';
+import { checkCart } from '../../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import {
+  getIsLoading,
+  getProductsAll,
+} from '../../redux/products/productsSlice';
 import { Error500 } from '../Error500/Error500';
+import Loader from '../Loader/Loader';
 
 type PagesWrapperProps = PropsWithChildren;
 
 export function PagesWrapper({ children }: PagesWrapperProps) {
-  const is500Error = useFetchProducts();
+  const error = useFetchProducts();
 
-  return <ScrollView>{is500Error ? <Error500 /> : <>{children}</>}</ScrollView>;
+  const productsAll = useAppSelector(getProductsAll);
+  const isLoading = useAppSelector(getIsLoading);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (productsAll.length > 0) {
+      dispatch(checkCart(productsAll));
+    }
+  }, [dispatch, productsAll]);
+
+  return (
+    <ScrollView>
+      {error ? (
+        <Error500 />
+      ) : (
+        <>
+          {isLoading && <Loader />}
+          {children}
+        </>
+      )}
+    </ScrollView>
+  );
 }

@@ -88,6 +88,5 @@ const styles = StyleSheet.create({
   wrapper: {
     rowGap: 20,
     alignItems: 'stretch',
-    padding: 10,
   },
 });

@@ -64,25 +64,30 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 10,
   },
+
   info: {
     display: 'flex',
     flexDirection: 'column',
     gap: 12,
   },
+
   title: {
     fontFamily: 'Comfortaa-Bold',
     fontSize: 24,
     color: '#000000',
   },
+
   text: {
     fontFamily: 'Inter-Regular',
     fontSize: 16,
     color: '#989898',
   },
+
   img: {
     marginLeft: 'auto',
     marginRight: 'auto',
   },
+
   promotion: {
     position: 'absolute',
     top: 0,
@@ -95,10 +100,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
   promotionText: {
     fontFamily: 'Comfortaa-SemiBold',
     color: 'white',
   },
+
   favorite: {
     position: 'absolute',
     top: 0,

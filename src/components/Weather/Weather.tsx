@@ -21,7 +21,7 @@ export function Weather() {
   }, []);
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <Text style={styles.heading}>Погода в Дніпрі</Text>
       <View style={styles.weatherList}>
         {weather.map(item => {
@@ -29,7 +29,9 @@ export function Weather() {
             <View key={item.date} style={styles.weatherListitem}>
               <Text style={styles.text}>{item.avgtemp} C°</Text>
               <Text style={styles.text}>{item.date}</Text>
-              <Text style={styles.text}>{item.conditionText}</Text>
+              <Text style={[styles.text, styles.condition]}>
+                {item.conditionText}
+              </Text>
               <Image source={{ uri: item.icon }} width={100} height={100} />
             </View>
           );
@@ -40,6 +42,10 @@ export function Weather() {
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    paddingBottom: 30,
+  },
+
   heading: {
     fontFamily: 'Inter-Regular',
     color: 'black',
@@ -58,12 +64,16 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    flex: 1,
   },
 
   text: {
     fontFamily: 'Inter-Regular',
     color: 'black',
     textAlign: 'center',
+  },
+
+  condition: {
     flexGrow: 1,
   },
 });

@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 import { checkCart } from '../../redux/cart/cartSlice';
@@ -28,7 +28,7 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
   }, [dispatch, productsAll]);
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.wrapper}>
       {error ? (
         <Error500 />
       ) : (
@@ -40,3 +40,9 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    padding: 10,
+  },
+});

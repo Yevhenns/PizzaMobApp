@@ -13,4 +13,4 @@ npm i
 npm start
 ```
 
-Click to download [APK](https://drive.google.com/file/d/1eLumq_43K2DYZcEd44UgqUftnkYDnuC5/view?usp=sharing)
+Click to download [APK](https://drive.google.com/file/d/1CZ4M9Iycx-XSnB4xvhncndBGkZzwKkQh/view?usp=sharing)

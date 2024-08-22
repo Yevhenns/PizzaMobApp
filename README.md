@@ -12,5 +12,3 @@ npm i
 ```bash
 npm start
 ```
-
-Click to download [APK](https://drive.google.com/file/d/1CZ4M9Iycx-XSnB4xvhncndBGkZzwKkQh/view?usp=sharing)

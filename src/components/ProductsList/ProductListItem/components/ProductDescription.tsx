@@ -6,25 +6,18 @@ import { HeartFilled } from '../../../../components/icons/HeartFilled';
 import RoundButton from '../../../RoundButton/RoundButton';
 
 interface ProductDescriptionProps {
-  _id: string;
-  photo: string;
-  title: string;
-  description: string;
-  dimension: string;
-  promotion: boolean;
+  item: Product;
   isFavorite: boolean;
   addToFavorite: () => void;
 }
 
 export function ProductDescription({
-  photo,
-  title,
-  description,
-  dimension,
-  promotion,
+  item,
   isFavorite,
   addToFavorite,
 }: ProductDescriptionProps) {
+  const { photo, title, description, dimension, promotion } = item;
+
   return (
     <View style={styles.descriprionWrapper}>
       <View>

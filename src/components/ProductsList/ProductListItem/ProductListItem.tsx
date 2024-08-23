@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { useAppDispatch } from '../../../redux/hooks';
+import { options } from '../../../options';
+import { addItem } from '../../../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import {
   addToFavoriteAction,
+  getFavorites,
   removeFromFavoriteAction,
 } from '../../../redux/products/productsSlice';
 import { ProductDescription } from './components/ProductDescription';
@@ -14,39 +17,24 @@ import { ProductQuantity } from './components/ProductQuantity';
 
 interface ProductListItemProps {
   item: Product;
-  addToCart: AddToCart;
-  setFavoriteProducts: (_id: string) => boolean;
-  favoriteProducts: Product[];
-  options?: Option[];
+  checkIsFavoriteProducts: (_id: string) => boolean;
 }
 
 export function ProductListItem({
   item,
-  addToCart,
-  setFavoriteProducts,
-  favoriteProducts,
-  options = [],
+  checkIsFavoriteProducts,
 }: ProductListItemProps) {
-  const {
-    _id,
-    title,
-    description,
-    dimension,
-    price,
-    photo,
-    promotion,
-    promPrice,
-    category,
-    vegan,
-  } = item;
+  const { _id, price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(setFavoriteProducts(_id));
+  const [isFavorite, setIsFavorite] = useState(checkIsFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
+
+  const favoriteProducts = useAppSelector(getFavorites);
 
   const dispatch = useAppDispatch();
 
@@ -76,6 +64,26 @@ export function ProductListItem({
     }
   };
 
+  const optionsTitles = optionsArray.map(item => item.title);
+
+  const addToCart = () => {
+    const { photo, title, _id } = item;
+    const cartItem = {
+      _id: _id,
+      photo: photo,
+      title: title,
+      quantity: totalQuantity,
+      optionsTitles: optionsTitles,
+      totalPrice: promotion ? totalPromPrice : totalPrice,
+    };
+    dispatch(addItem(cartItem));
+    Toast.show({
+      type: 'success',
+      text1: 'Додано до кошика',
+      visibilityTime: 1500,
+    });
+  };
+
   const handleShowOptions = () => {
     setOptionsShown(!optionsShown);
   };
@@ -103,12 +111,7 @@ export function ProductListItem({
   return (
     <View style={styles.listItem}>
       <ProductDescription
-        _id={_id}
-        photo={photo}
-        title={title}
-        description={description}
-        dimension={dimension}
-        promotion={promotion}
+        item={item}
         isFavorite={isFavorite}
         addToFavorite={addToFavorite}
       />
@@ -126,13 +129,10 @@ export function ProductListItem({
         />
       )}
       <ProductFooter
-        _id={_id}
-        totalQuantity={totalQuantity}
         promotion={promotion}
         totalPrice={totalPrice}
         totalPromPrice={totalPromPrice}
         addToCart={addToCart}
-        optionsArray={optionsArray}
       />
     </View>
   );

@@ -3,22 +3,19 @@ import { StyleSheet } from 'react-native';
 
 import { Button } from '../../../Button/Button';
 
-interface ProductFooterProps extends ProductItem {
-  addToCart: AddToCart;
-  optionsArray: Option[];
-}
+type ProductFooterProps = {
+  addToCart: () => void;
+  promotion: boolean;
+  totalPrice: number;
+  totalPromPrice: number;
+};
 
 export function ProductFooter({
-  _id,
-  totalQuantity,
   promotion,
   totalPrice,
   totalPromPrice,
   addToCart,
-  optionsArray,
 }: ProductFooterProps) {
-  const optionsTitles = optionsArray.map(item => item.title);
-
   return (
     <View style={styles.productFooter}>
       {promotion ? (
@@ -29,19 +26,7 @@ export function ProductFooter({
       ) : (
         <Text style={styles.promPrice}>{totalPrice} грн</Text>
       )}
-      <Button
-        onPress={() =>
-          addToCart(
-            _id,
-            totalQuantity,
-            promotion,
-            totalPrice,
-            totalPromPrice,
-            optionsTitles,
-          )
-        }>
-        В кошик
-      </Button>
+      <Button onPress={() => addToCart()}>В кошик</Button>
     </View>
   );
 }

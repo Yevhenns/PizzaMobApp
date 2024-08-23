@@ -11,7 +11,7 @@ interface CartListItemProps {
 }
 
 export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
-  const { cart_id, photo, title, quantity, totalPrice, options } = data;
+  const { cart_id, photo, title, quantity, totalPrice, optionsTitles } = data;
 
   return (
     <View style={styles.wrapper}>
@@ -30,10 +30,10 @@ export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
           <Remove color={'#de612b'} />
         </RoundButton>
       </View>
-      {options.length > 0 && (
+      {optionsTitles.length > 0 && (
         <View>
           <View>
-            {options.map(item => {
+            {optionsTitles.map(item => {
               return (
                 <View key={item}>
                   <Text style={styles.text}>+ {item}</Text>

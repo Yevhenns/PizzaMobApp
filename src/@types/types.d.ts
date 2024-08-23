@@ -19,7 +19,7 @@ type Info = {
   number: string;
 };
 
-type Ordered = Pick<CartItem, 'title' | 'quantity' | 'options'>[];
+type Ordered = Pick<CartItem, 'title' | 'quantity' | 'optionsTitles'>[];
 
 type SummaryOrder = {
   customerInfo: Info;
@@ -33,7 +33,7 @@ type AddtoCartItem = {
   quantity: number;
   title: string;
   totalPrice: number;
-  options: string[];
+  optionsTitles: string[];
 };
 
 type CartItem = {
@@ -43,7 +43,7 @@ type CartItem = {
   quantity: number;
   title: string;
   totalPrice: number;
-  options: string[];
+  optionsTitles: string[];
 };
 
 type ProductItem = {
@@ -53,15 +53,6 @@ type ProductItem = {
   totalPrice: number;
   totalPromPrice: number;
 };
-
-type AddToCart = (
-  _id: string,
-  totalQuantity: number,
-  promotion: boolean,
-  totalPrice: number,
-  TotalPromPrice: number,
-  optionsArray: string[],
-) => void;
 
 type ProductsResponse = {
   code: number;

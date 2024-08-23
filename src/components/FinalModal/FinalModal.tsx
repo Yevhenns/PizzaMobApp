@@ -41,15 +41,20 @@ export function FinalModal({ finalAction }: FinalModalProps) {
             <Text style={styles.text}>Інформація про замовлення:</Text>
           </View>
           <View>
-            {filteredCart.map(({ cart_id, title, quantity, totalPrice }) => {
-              return (
-                <View key={cart_id}>
-                  <Text style={styles.text}>
-                    {title} - {quantity} шт. - {totalPrice} грн.
-                  </Text>
-                </View>
-              );
-            })}
+            {filteredCart.map(
+              ({ cart_id, title, quantity, totalPrice, optionsTitles }) => {
+                return (
+                  <View key={cart_id}>
+                    <Text style={styles.text}>
+                      {title} - {quantity} шт. - {totalPrice} грн.
+                    </Text>
+                    {optionsTitles.map(item => {
+                      return <p key={item}>{item}</p>;
+                    })}
+                  </View>
+                );
+              },
+            )}
           </View>
           <View>
             <Text style={styles.text}>Загальна сума: {sum} грн.</Text>

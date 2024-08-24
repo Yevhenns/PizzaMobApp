@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { useFetchProducts } from '../../hooks/useFetchProducts';
 import { checkCart } from '../../redux/cart/cartSlice';
@@ -34,7 +34,7 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
       ) : (
         <>
           {isLoading && <Loader />}
-          {children}
+          <View style={styles.childrenWrapper}>{children}</View>
         </>
       )}
     </ScrollView>
@@ -45,5 +45,10 @@ const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: 10,
     paddingTop: 10,
+  },
+
+  childrenWrapper: {
+    display: 'flex',
+    gap: 20,
   },
 });

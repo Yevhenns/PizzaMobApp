@@ -52,5 +52,6 @@ const styles = StyleSheet.create({
   wrapper: {
     rowGap: 20,
     alignItems: 'stretch',
+    paddingBottom: 20,
   },
 });

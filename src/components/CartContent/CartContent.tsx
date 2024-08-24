@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Empty } from '../../components/Empty/Empty';
 import {
@@ -46,7 +46,7 @@ export function CartContent({
   }
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       {filteredCart.length > 0 ? (
         <>
           <CartList
@@ -61,3 +61,9 @@ export function CartContent({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    paddingBottom: 20,
+  },
+});

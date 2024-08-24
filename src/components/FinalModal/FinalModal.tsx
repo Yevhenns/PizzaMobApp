@@ -34,7 +34,7 @@ export function FinalModal({ finalAction }: FinalModalProps) {
         </View>
       ) : (
         <View style={styles.modal}>
-          <View style={styles.resultText}>
+          <View style={styles.resultTextWrapper}>
             <Text style={styles.text}>Дякуємо!</Text>
             <Text style={styles.text}>Ваше замовлення прийняте,</Text>
             <Text style={styles.text}>очікуйте дзвінок від менеджера</Text>
@@ -49,7 +49,11 @@ export function FinalModal({ finalAction }: FinalModalProps) {
                       {title} - {quantity} шт. - {totalPrice} грн.
                     </Text>
                     {optionsTitles.map(item => {
-                      return <p key={item}>{item}</p>;
+                      return (
+                        <Text key={item} style={styles.text}>
+                          + {item}
+                        </Text>
+                      );
                     })}
                   </View>
                 );
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
 
-  resultText: {
+  resultTextWrapper: {
     alignItems: 'center',
     display: 'flex',
     flexDirection: 'column',
@@ -100,6 +104,7 @@ const styles = StyleSheet.create({
 
   text: {
     color: '#000000',
+    fontSize: 16,
   },
 
   buttonText: {

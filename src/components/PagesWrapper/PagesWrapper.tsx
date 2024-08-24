@@ -43,6 +43,7 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingTop: 10,
   },
 });

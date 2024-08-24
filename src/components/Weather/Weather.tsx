@@ -43,14 +43,18 @@ export function Weather() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingBottom: 30,
+    backgroundColor: '#fff',
+    padding: 24,
+    borderRadius: 10,
+    marginBottom: 10,
   },
 
   heading: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'Comfortaa-SemiBold',
     color: 'black',
     textAlign: 'center',
-    marginVertical: 24,
+    fontSize: 18,
+    marginBottom: 10,
   },
 
   weatherList: {
@@ -68,9 +72,10 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'Comfortaa-SemiBold',
     color: 'black',
     textAlign: 'center',
+    fontSize: 16,
   },
 
   condition: {

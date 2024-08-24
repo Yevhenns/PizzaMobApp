@@ -44,7 +44,7 @@ export function Weather() {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#fff',
-    padding: 24,
+    padding: 10,
     borderRadius: 10,
     marginBottom: 10,
   },
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: 20,
+    gap: 10,
   },
 
   weatherListitem: {

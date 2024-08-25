@@ -1,10 +1,11 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { useFetchProducts } from '../../hooks/useFetchProducts';
 import { checkCart } from '../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { getProducts } from '../../redux/products/productsOperations';
 import {
+  getError,
   getIsLoading,
   getProductsAll,
 } from '../../redux/products/productsSlice';
@@ -14,18 +15,21 @@ import Loader from '../Loader/Loader';
 type PagesWrapperProps = PropsWithChildren;
 
 export function PagesWrapper({ children }: PagesWrapperProps) {
-  const error = useFetchProducts();
-
   const productsAll = useAppSelector(getProductsAll);
   const isLoading = useAppSelector(getIsLoading);
+  const error = useAppSelector(getError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (productsAll.length === 0 && !error) {
+      dispatch(getProducts());
+      return;
+    }
     if (productsAll.length > 0) {
       dispatch(checkCart(productsAll));
     }
-  }, [dispatch, productsAll]);
+  }, [dispatch, error, productsAll]);
 
   return (
     <ScrollView style={styles.wrapper}>

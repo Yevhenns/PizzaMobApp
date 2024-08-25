@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 
-import { options } from '../../../options';
+import { options } from '../../../assets/options';
 import { addItem } from '../../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import {

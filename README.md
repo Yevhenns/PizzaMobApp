@@ -12,3 +12,12 @@ npm i
 ```bash
 npm start
 ```
+
+## Build APK
+
+```bash
+cd android
+```
+```bash
+./gradlew assembleRelease
+```

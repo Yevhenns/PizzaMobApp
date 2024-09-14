@@ -14,6 +14,8 @@ export function HorizontalCarousel() {
       <FlatList
         horizontal
         data={data}
+        showsHorizontalScrollIndicator={false}
+        pagingEnabled
         keyExtractor={index => index.toString()}
         renderItem={({ item }) => {
           return (

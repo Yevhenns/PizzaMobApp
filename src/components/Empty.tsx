@@ -17,9 +17,10 @@ export function Empty() {
 
 const styles = StyleSheet.create({
   emptyCart: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
-    padding: 20,
   },
   text: {
     fontFamily: 'Inter-Regular',

@@ -2,7 +2,7 @@ import { Image, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { Remove } from '../../../../components/icons/Remove';
-import RoundButton from '../../../RoundButton';
+import { IconButton } from '../../../IconButton';
 import { CartListItemQuantity } from './CartListItemQuantity/CartListItemQuantity';
 
 interface CartListItemProps {
@@ -24,11 +24,11 @@ export function CartListItem({ data, deleteCartItem }: CartListItemProps) {
           price={totalPrice}
         />
         <Text style={styles.totalPrice}>{totalPrice} грн</Text>
-        <RoundButton
+        <IconButton
           style={styles.deleteButton}
           onPress={() => deleteCartItem(cart_id)}>
           <Remove color={'#de612b'} />
-        </RoundButton>
+        </IconButton>
       </View>
       {optionsTitles.length > 0 && (
         <View>

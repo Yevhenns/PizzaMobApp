@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import {
   deleteItem,
@@ -6,7 +6,6 @@ import {
   getIsLoading,
 } from '../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { Empty } from '../Empty';
 import Loader from '../Loader';
 import { CartForm } from './CartForm/CartForm';
 import { CartList } from './CartList/CartList';
@@ -39,10 +38,6 @@ export function CartContent({
 
   if (isLoading) {
     return <Loader />;
-  }
-
-  if (filteredCart.length === 0) {
-    return <Empty />;
   }
 
   return (

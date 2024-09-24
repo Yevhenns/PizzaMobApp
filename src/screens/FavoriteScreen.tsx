@@ -9,15 +9,11 @@ import { getFavorites } from '../redux/products/productsSlice';
 export function FavoriteScreen() {
   const favoriteProducts = useAppSelector(getFavorites);
 
+  if (favoriteProducts.length === 0) return <Empty />;
+
   return (
     <PagesWrapper>
-      {favoriteProducts.length > 0 ? (
-        <ProductsList category="favorites" />
-      ) : (
-        <View>
-          <Empty />
-        </View>
-      )}
+      <ProductsList category="favorites" />
     </PagesWrapper>
   );
 }

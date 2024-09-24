@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { Heart } from '../../../../components/icons/Heart';
 import { HeartFilled } from '../../../../components/icons/HeartFilled';
-import RoundButton from '../../../RoundButton';
+import { IconButton } from '../../../IconButton';
 
 interface ProductDescriptionProps {
   item: Product;
@@ -33,13 +33,13 @@ export function ProductDescription({
           </View>
         )}
         <View style={styles.favorite}>
-          <RoundButton aria-label="add to favorite" onPress={addToFavorite}>
+          <IconButton aria-label="add to favorite" onPress={addToFavorite}>
             {!isFavorite ? (
               <Heart color={'#de612b'} />
             ) : (
               <HeartFilled color={'#de612b'} />
             )}
-          </RoundButton>
+          </IconButton>
         </View>
       </View>
       <View style={styles.info}>

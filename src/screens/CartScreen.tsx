@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { View } from 'react-native';
 
 import { CartContent } from '../components/CartContent/CartContent';
+import { Empty } from '../components/Empty';
 import { FinalModal } from '../components/FinalModal';
 import { PagesWrapper } from '../components/PagesWrapper';
-import { deleteAllItems } from '../redux/cart/cartSlice';
-import { useAppDispatch } from '../redux/hooks';
+import { deleteAllItems, getFilteredCart } from '../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 
 export function CartScreen() {
   const [open, setOpen] = useState(false);
+
+  const filteredCart = useAppSelector(getFilteredCart);
 
   const dispatch = useAppDispatch();
 
@@ -20,6 +23,8 @@ export function CartScreen() {
     dispatch(deleteAllItems());
     setOpen(false);
   };
+
+  if (filteredCart.length === 0) return <Empty />;
 
   return (
     <PagesWrapper>

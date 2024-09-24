@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { ChevronLeft } from '../../../../components/icons/ChevronLeft';
 import { ChevronRight } from '../../../../components/icons/ChevronRight';
 import { Checkbox } from '../../../Checkbox/Checkbox';
-import RoundButton from '../../../RoundButton';
+import { IconButton } from '../../../IconButton';
 
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;
@@ -37,16 +37,16 @@ export function ProductQuantity({
   return (
     <View style={styles.wrapper}>
       <View style={styles.quantitySet}>
-        <RoundButton
+        <IconButton
           onPress={decrement}
           disabled={quantity === 1}
           aria-label="minus">
           <ChevronLeft color={'#de612b'} />
-        </RoundButton>
+        </IconButton>
         <Text style={styles.quantityText}>{quantity} шт.</Text>
-        <RoundButton onPress={increment} aria-label="plus">
+        <IconButton onPress={increment} aria-label="plus">
           <ChevronRight color={'#de612b'} />
-        </RoundButton>
+        </IconButton>
       </View>
       {category === 'pizzas' && options.length > 0 && (
         <Checkbox label="Опції" handleChange={handleChange} labelLeft />

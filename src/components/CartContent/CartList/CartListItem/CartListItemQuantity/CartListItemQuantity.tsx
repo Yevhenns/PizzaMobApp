@@ -6,7 +6,7 @@ import { ChevronLeft } from '../../../../../components/icons/ChevronLeft';
 import { ChevronRight } from '../../../../../components/icons/ChevronRight';
 import { setQuantityAndPrice } from '../../../../../redux/cart/cartSlice';
 import { useAppDispatch } from '../../../../../redux/hooks';
-import RoundButton from '../../../../RoundButton';
+import { IconButton } from '../../../../IconButton';
 
 interface CartListItemQuantityProps {
   chosenQuantity: number;
@@ -37,16 +37,16 @@ export function CartListItemQuantity({
 
   return (
     <View style={styles.wrapper}>
-      <RoundButton
+      <IconButton
         onPress={decrement}
         disabled={quantity === 1}
         aria-label="minus">
         <ChevronLeft color="#de612b" />
-      </RoundButton>
+      </IconButton>
       <Text style={styles.text}>{chosenQuantity}</Text>
-      <RoundButton onPress={increment} aria-label="plus">
+      <IconButton onPress={increment} aria-label="plus">
         <ChevronRight color="#de612b" />
-      </RoundButton>
+      </IconButton>
     </View>
   );
 }

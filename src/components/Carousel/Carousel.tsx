@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import { Dimensions, FlatList, Image, StyleSheet, View } from 'react-native';
 
 const { width } = Dimensions.get('screen');
@@ -9,9 +10,25 @@ const data = [
 ];
 
 export function HorizontalCarousel() {
+  const flatListRef = useRef<FlatList<any | null>>(null);
+  const currentIndex = useRef(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      currentIndex.current = (currentIndex.current + 1) % data.length;
+      flatListRef.current?.scrollToIndex({
+        animated: true,
+        index: currentIndex.current,
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <View style={styles.wrapper}>
       <FlatList
+        ref={flatListRef}
         horizontal
         data={data}
         showsHorizontalScrollIndicator={false}

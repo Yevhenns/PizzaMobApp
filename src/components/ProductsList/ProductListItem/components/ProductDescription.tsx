@@ -1,22 +1,54 @@
+import { useEffect, useState } from 'react';
 import { Image, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 import { Heart } from '../../../../components/icons/Heart';
 import { HeartFilled } from '../../../../components/icons/HeartFilled';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import {
+  addToFavoriteAction,
+  getFavorites,
+  removeFromFavoriteAction,
+} from '../../../../redux/products/productsSlice';
 import { IconButton } from '../../../IconButton';
 
 interface ProductDescriptionProps {
   item: Product;
-  isFavorite: boolean;
-  addToFavorite: () => void;
 }
 
-export function ProductDescription({
-  item,
-  isFavorite,
-  addToFavorite,
-}: ProductDescriptionProps) {
-  const { photo, title, description, dimension, promotion } = item;
+export function ProductDescription({ item }: ProductDescriptionProps) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const { _id, photo, title, description, dimension, promotion } = item;
+
+  const favoriteProducts = useAppSelector(getFavorites);
+
+  const dispatch = useAppDispatch();
+
+  const addToFavorite = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavoriteAction(_id));
+      Toast.show({
+        type: 'info',
+        text1: 'Видалено з улюблених',
+        visibilityTime: 1500,
+      });
+    }
+    dispatch(addToFavoriteAction(item));
+    Toast.show({
+      type: 'success',
+      text1: 'Додано в улюблені',
+      visibilityTime: 1500,
+    });
+  };
+
+  useEffect(() => {
+    const checkIsFavoriteProducts = () => {
+      return favoriteProducts.some(item => item._id === _id);
+    };
+    setIsFavorite(checkIsFavoriteProducts);
+  }, [favoriteProducts]);
 
   return (
     <View style={styles.descriprionWrapper}>

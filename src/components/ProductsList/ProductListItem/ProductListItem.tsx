@@ -4,12 +4,7 @@ import Toast from 'react-native-toast-message';
 
 import { options } from '../../../assets/options';
 import { addItem } from '../../../redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import {
-  addToFavoriteAction,
-  getFavorites,
-  removeFromFavoriteAction,
-} from '../../../redux/products/productsSlice';
+import { useAppDispatch } from '../../../redux/hooks';
 import { ProductDescription } from './components/ProductDescription';
 import { ProductFooter } from './components/ProductFooter';
 import { ProductOptionsList } from './components/ProductOptionsList';
@@ -17,24 +12,17 @@ import { ProductQuantity } from './components/ProductQuantity';
 
 interface ProductListItemProps {
   item: Product;
-  checkIsFavoriteProducts: (_id: string) => boolean;
 }
 
-export function ProductListItem({
-  item,
-  checkIsFavoriteProducts,
-}: ProductListItemProps) {
-  const { _id, price, promotion, promPrice, category, vegan } = item;
+export function ProductListItem({ item }: ProductListItemProps) {
+  const { price, promotion, promPrice, category, vegan } = item;
 
   const [totalPrice, setTotalPrice] = useState(price);
   const [totalPromPrice, setTotalPromPrice] = useState(promPrice);
   const [totalQuantity, setTotalQuantity] = useState(1);
-  const [isFavorite, setIsFavorite] = useState(checkIsFavoriteProducts(_id));
   const [optionsShown, setOptionsShown] = useState(false);
   const [optionsArray, setOptionsArray] = useState<Option[]>([]);
   const [optionsSum, setOptionsSum] = useState(0);
-
-  const favoriteProducts = useAppSelector(getFavorites);
 
   const dispatch = useAppDispatch();
 
@@ -42,26 +30,6 @@ export function ProductListItem({
     setTotalQuantity(quantity);
     setTotalPrice((price + optionsSum) * quantity);
     setTotalPromPrice((promPrice + optionsSum) * quantity);
-  };
-
-  const addToFavorite = () => {
-    if (favoriteProducts.some(item => item._id === _id)) {
-      setIsFavorite(false);
-      dispatch(removeFromFavoriteAction(_id));
-      Toast.show({
-        type: 'info',
-        text1: 'Видалено з улюблених',
-        visibilityTime: 1500,
-      });
-    } else {
-      setIsFavorite(true);
-      dispatch(addToFavoriteAction(item));
-      Toast.show({
-        type: 'success',
-        text1: 'Додано в улюблені',
-        visibilityTime: 1500,
-      });
-    }
   };
 
   const optionsTitles = optionsArray.map(item => item.title);
@@ -110,11 +78,7 @@ export function ProductListItem({
 
   return (
     <View style={styles.listItem}>
-      <ProductDescription
-        item={item}
-        isFavorite={isFavorite}
-        addToFavorite={addToFavorite}
-      />
+      <ProductDescription item={item} />
       <ProductQuantity
         getTotalQuantity={getTotalQuantity}
         handleChange={handleShowOptions}

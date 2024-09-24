@@ -1,13 +1,13 @@
 import { StyleSheet, View } from 'react-native';
 
-import { Empty } from '../../components/Empty/Empty';
 import {
   deleteItem,
   getFilteredCart,
   getIsLoading,
 } from '../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import Loader from '../Loader/Loader';
+import { Empty } from '../Empty';
+import Loader from '../Loader';
 import { CartForm } from './CartForm/CartForm';
 import { CartList } from './CartList/CartList';
 
@@ -41,23 +41,17 @@ export function CartContent({
     return <Loader />;
   }
 
-  if (filteredCart.length === 0 && !isLoading) {
+  if (filteredCart.length === 0) {
     return <Empty />;
   }
 
   return (
     <View>
-      {filteredCart.length > 0 ? (
-        <>
-          <CartList
-            deleteCartItem={deleteCartItem}
-            deleteAllProducts={deleteAllProducts}
-          />
-          <CartForm openModal={openModal} order={order} />
-        </>
-      ) : (
-        <Empty />
-      )}
+      <CartList
+        deleteCartItem={deleteCartItem}
+        deleteAllProducts={deleteAllProducts}
+      />
+      <CartForm openModal={openModal} order={order} />
     </View>
   );
 }

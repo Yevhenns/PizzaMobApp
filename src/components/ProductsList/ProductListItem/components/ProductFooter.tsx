@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-import { Button } from '../../../Button/Button';
+import { Button } from '../../../Button';
 
 type ProductFooterProps = {
   addToCart: () => void;

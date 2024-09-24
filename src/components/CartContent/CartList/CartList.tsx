@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 import { addOrderSum, getFilteredCart } from '../../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { Button } from '../../Button/Button';
+import { Button } from '../../Button';
 import { CartListItem } from './CartListItem/CartListItem';
 
 interface CartListProps {

@@ -6,7 +6,7 @@ import { ChevronLeft } from '../../../../../components/icons/ChevronLeft';
 import { ChevronRight } from '../../../../../components/icons/ChevronRight';
 import { setQuantityAndPrice } from '../../../../../redux/cart/cartSlice';
 import { useAppDispatch } from '../../../../../redux/hooks';
-import RoundButton from '../../../../RoundButton/RoundButton';
+import RoundButton from '../../../../RoundButton';
 
 interface CartListItemQuantityProps {
   chosenQuantity: number;

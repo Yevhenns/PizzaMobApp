@@ -1,7 +1,7 @@
 import { View } from 'react-native';
 
-import { Empty } from '../components/Empty/Empty';
-import { PagesWrapper } from '../components/PagesWrapper/PagesWrapper';
+import { Empty } from '../components/Empty';
+import { PagesWrapper } from '../components/PagesWrapper';
 import { ProductsList } from '../components/ProductsList/ProductsList';
 import { useAppSelector } from '../redux/hooks';
 import { getFavorites } from '../redux/products/productsSlice';

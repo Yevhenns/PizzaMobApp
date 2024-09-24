@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import { Heart } from '../../../../components/icons/Heart';
 import { HeartFilled } from '../../../../components/icons/HeartFilled';
-import RoundButton from '../../../RoundButton/RoundButton';
+import RoundButton from '../../../RoundButton';
 
 interface ProductDescriptionProps {
   item: Product;

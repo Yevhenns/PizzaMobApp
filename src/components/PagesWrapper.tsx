@@ -1,16 +1,16 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
-import { checkCart } from '../../redux/cart/cartSlice';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { getProducts } from '../../redux/products/productsOperations';
+import { checkCart } from '../redux/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { getProducts } from '../redux/products/productsOperations';
 import {
   getError,
   getIsLoading,
   getProductsAll,
-} from '../../redux/products/productsSlice';
-import { Error500 } from '../Error500/Error500';
-import Loader from '../Loader/Loader';
+} from '../redux/products/productsSlice';
+import { Error500 } from './Error500';
+import Loader from './Loader';
 
 type PagesWrapperProps = PropsWithChildren;
 

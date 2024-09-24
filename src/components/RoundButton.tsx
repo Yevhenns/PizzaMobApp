@@ -1,24 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-type ButtonProps = {
-  onPress: () => void;
-  disabled?: boolean;
-} & TouchableOpacityProps;
+type ButtonProps = TouchableOpacityProps;
 
-const RoundButton = ({
-  children,
-  onPress,
-  disabled,
-  ...props
-}: ButtonProps) => {
+const RoundButton = ({ children, ...props }: ButtonProps) => {
   return (
-    <TouchableOpacity
-      style={styles.button}
-      onPress={onPress}
-      {...props}
-      disabled={disabled}>
+    <TouchableOpacity style={styles.button} {...props}>
       {children}
     </TouchableOpacity>
   );

@@ -1,4 +1,4 @@
-import { PagesWrapper } from '../components/PagesWrapper/PagesWrapper';
+import { PagesWrapper } from '../components/PagesWrapper';
 import { ProductsList } from '../components/ProductsList/ProductsList';
 
 export function DrinksScreen() {

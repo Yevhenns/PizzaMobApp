@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { ChevronLeft } from '../../../../components/icons/ChevronLeft';
 import { ChevronRight } from '../../../../components/icons/ChevronRight';
 import { Checkbox } from '../../../Checkbox/Checkbox';
-import RoundButton from '../../../RoundButton/RoundButton';
+import RoundButton from '../../../RoundButton';
 
 interface ProductQuantityProps {
   getTotalQuantity: (quantity: number) => void;

@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { View } from 'react-native';
 
 import { CartContent } from '../components/CartContent/CartContent';
-import { FinalModal } from '../components/FinalModal/FinalModal';
-import { PagesWrapper } from '../components/PagesWrapper/PagesWrapper';
+import { FinalModal } from '../components/FinalModal';
+import { PagesWrapper } from '../components/PagesWrapper';
 import { deleteAllItems } from '../redux/cart/cartSlice';
 import { useAppDispatch } from '../redux/hooks';
 

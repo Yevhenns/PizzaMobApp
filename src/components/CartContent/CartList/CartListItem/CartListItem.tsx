@@ -2,7 +2,7 @@ import { Image, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import { Remove } from '../../../../components/icons/Remove';
-import RoundButton from '../../../RoundButton/RoundButton';
+import RoundButton from '../../../RoundButton';
 import { CartListItemQuantity } from './CartListItemQuantity/CartListItemQuantity';
 
 interface CartListItemProps {

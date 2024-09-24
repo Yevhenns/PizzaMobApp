@@ -7,7 +7,7 @@ import { MaskedTextInput } from 'react-native-mask-text';
 import { sendOrder } from '../../../redux/cart/cartOperations';
 import { addInfo, getOrderSum } from '../../../redux/cart/cartSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { Button } from '../../Button/Button';
+import { Button } from '../../Button';
 import { Checkbox } from '../../Checkbox/Checkbox';
 
 interface CartFormProps {

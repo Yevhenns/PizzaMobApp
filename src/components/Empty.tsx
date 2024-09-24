@@ -5,7 +5,7 @@ export function Empty() {
   return (
     <View style={styles.emptyCart}>
       <Image
-        source={require('../../assets/empty.png')}
+        source={require('../assets/empty.png')}
         alt="empty"
         width={236}
         height={257}

@@ -46,7 +46,7 @@ export function CartContent({
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View>
       {filteredCart.length > 0 ? (
         <>
           <CartList
@@ -61,9 +61,3 @@ export function CartContent({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    paddingBottom: 20,
-  },
-});

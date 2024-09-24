@@ -31,28 +31,26 @@ export function PagesWrapper({ children }: PagesWrapperProps) {
     }
   }, [dispatch, error, productsAll]);
 
+  if (error) return <Error500 />;
+
   return (
-    <ScrollView style={styles.wrapper}>
-      {error ? (
-        <Error500 />
-      ) : (
-        <>
-          {isLoading && <Loader />}
-          <View style={styles.childrenWrapper}>{children}</View>
-        </>
-      )}
-    </ScrollView>
+    <View style={styles.wrapper}>
+      <>
+        {isLoading && <Loader />}
+        <ScrollView contentContainerStyle={styles.childrenWrapper}>
+          {children}
+        </ScrollView>
+      </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: 10,
-    paddingTop: 10,
+    padding: 10,
   },
 
   childrenWrapper: {
-    display: 'flex',
-    gap: 20,
+    rowGap: 20,
   },
 });

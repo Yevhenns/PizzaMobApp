@@ -12,8 +12,10 @@ export function Error500() {
 
 const styles = StyleSheet.create({
   modal: {
+    flex: 1,
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
   },
 
   text: {
